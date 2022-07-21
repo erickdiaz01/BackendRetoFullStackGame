@@ -1,4 +1,4 @@
-package co.com.sofkau.mongo;
+package co.com.sofkau.mongo.card;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
