@@ -2,8 +2,7 @@ package co.com.sofkau.api.player;
 
 
 
-import co.com.sofkau.model.board.Board;
-import co.com.sofkau.model.carta.Carta;
+
 import co.com.sofkau.model.player.Player;
 import co.com.sofkau.usecase.player.createplayer.CreatePlayerUseCase;
 import co.com.sofkau.usecase.player.deleteplayer.DeletePlayerUseCase;
@@ -56,7 +55,7 @@ public class HandlerPlayer {
         String id = serverRequest.pathVariable("id");
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(deletePlayerUseCase.deletePlayerById(id), Board.class);
+                .body(deletePlayerUseCase.deletePlayerById(id), Player.class);
     }
 
     public Mono<ServerResponse> findAllPlayers(ServerRequest serverRequest) {

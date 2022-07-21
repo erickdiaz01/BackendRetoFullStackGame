@@ -12,7 +12,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 @Configuration
 public class RouterRestCard {
 @Bean
-public RouterFunction<ServerResponse> routerFunction(HandlerCard handlerCard) {
+public RouterFunction<ServerResponse> routerFunctionCard(HandlerCard handlerCard) {
     return route(GET("/api/card/listcards"), handlerCard::listCards)
     .andRoute(POST("/api/card/createcard"), handlerCard::createCard).andRoute(GET("/api/card/listcard/{id}"),handlerCard::findCardById)
             .andRoute(PUT("/api/card/updatecard/{id}"),handlerCard::updateCard)
