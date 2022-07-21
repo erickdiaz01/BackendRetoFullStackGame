@@ -27,4 +27,34 @@ public class MongoRepositoryAdapterBoard extends AdapterOperations<Board, BoardD
     public Mono<Board> update(String boardId, Board board) {
         return null;
     }
+
+    @Override
+    public Mono<Board> changeStateViewCards(String boardId, Board board) {
+        return null;
+    }
+
+    @Override
+    public Mono<Board> ifNotWinnerChangeRound(String boardId, Board board) {
+        return null;
+    }
+
+    @Override
+    public Mono<Board> selectWinnerCard(String boardId, Board board) {
+        return null;
+    }
+
+    @Override
+    public Mono<Board> receiveCards(String boardId, Board board) {
+        return null;
+    }
+
+    @Override
+    public Mono<Board> receiveCardsOfLeftPlayer(String boardId, Board board) {
+        return null;
+    }
+
+    @Override
+    public Mono<Board> verifyAllPlayersCards(String boardId, Board board) {
+        return null;
+    }
 }
