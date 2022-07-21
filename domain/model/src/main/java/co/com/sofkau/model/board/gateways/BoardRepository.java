@@ -10,4 +10,10 @@ public interface BoardRepository {
     Mono<Board> findById(String boardId);
     Mono<Board> update(String boardId,Board board);
     Mono<Void> deleteById(String boardId);
+    Mono<Board> changeStateViewCards(String boardId,Board board);
+    Mono<Board> ifNotWinnerChangeRound (String boardId,Board board);
+    Mono<Board> selectWinnerCard(String boardId,Board board);
+    Mono<Board> receiveCards(String boardId,Board board);
+    Mono<Board>receiveCardsOfLeftPlayer(String boardId,Board board);
+    Mono<Board> verifyAllPlayersCards (String boardId,Board board);
 }
