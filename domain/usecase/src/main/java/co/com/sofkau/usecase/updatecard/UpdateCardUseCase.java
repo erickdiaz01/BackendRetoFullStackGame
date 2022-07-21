@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class UpdateCardUseCase {
     private final CartaRepository cartaRepository;
-    Mono<Carta> updateCard(String cardId, Carta card){
+   public Mono<Carta> updateCard(String cardId, Carta card){
         return cartaRepository.update(cardId,card);
     }
 }

@@ -9,7 +9,7 @@ import reactor.core.publisher.Flux;
 public class FindAllCardsUseCase {
     private final CartaRepository cartaRepository;
 
-    Flux<Carta> findAllCards(){
+    public Flux<Carta> findAllCards(){
         return cartaRepository.findAll();
     }
 }

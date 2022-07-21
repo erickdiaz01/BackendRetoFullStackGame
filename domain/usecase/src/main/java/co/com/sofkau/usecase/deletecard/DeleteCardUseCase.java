@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
 public class DeleteCardUseCase {
     private final CartaRepository cartaRepository;
 
-    Mono<Void> deleteCardById(String cardId){
+    public Mono<Void> deleteCardById(String cardId){
         return cartaRepository.deleteById(cardId);
     }
 }

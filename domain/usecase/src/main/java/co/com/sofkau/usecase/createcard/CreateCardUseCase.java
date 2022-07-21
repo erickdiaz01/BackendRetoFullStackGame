@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class CreateCardUseCase {
     private final CartaRepository cartaRepository;
-    Mono<Carta> saveCard(Carta card) {
+   public  Mono<Carta> saveCard(Carta card) {
         return cartaRepository.save(card);
     }
 }

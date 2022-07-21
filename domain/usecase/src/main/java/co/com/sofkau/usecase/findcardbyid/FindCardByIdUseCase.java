@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class FindCardByIdUseCase {
     private final CartaRepository cartaRepository;
-    Mono<Carta> findCardById(String idCard){
+    public Mono<Carta> findCardById(String idCard){
         return cartaRepository.findById(idCard);
     }
 }
