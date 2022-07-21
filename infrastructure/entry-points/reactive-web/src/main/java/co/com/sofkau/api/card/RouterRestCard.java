@@ -1,6 +1,5 @@
-package co.com.sofkau.api;
+package co.com.sofkau.api.card;
 
-import co.com.sofkau.api.card.HandlerCard;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.server.RouterFunction;
@@ -11,7 +10,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 
 
 @Configuration
-public class RouterRest {
+public class RouterRestCard {
 @Bean
 public RouterFunction<ServerResponse> routerFunction(HandlerCard handlerCard) {
     return route(GET("/api/card/listcards"), handlerCard::listCards)
