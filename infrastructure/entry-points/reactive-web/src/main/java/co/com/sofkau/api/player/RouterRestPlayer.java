@@ -15,7 +15,7 @@ public class RouterRestPlayer {
 
 
     @Bean
-    public RouterFunction<ServerResponse> routerFunction(HandlerPlayer handlerPlayer) {
+    public RouterFunction<ServerResponse> routerFunctionPlayer(HandlerPlayer handlerPlayer) {
         return route(GET("/api/player/listplayers"), handlerPlayer::findAllPlayers)
                 .andRoute(POST("/api/player/createplayer"), handlerPlayer::createPlayer)
                 .andRoute(GET("/api/card/listplayer/{id}"),handlerPlayer::findPlayerById)

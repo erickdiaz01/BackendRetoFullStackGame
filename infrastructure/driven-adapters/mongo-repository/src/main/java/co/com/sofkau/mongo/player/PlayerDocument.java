@@ -15,7 +15,7 @@ import java.util.Set;
 public class PlayerDocument {
     @Id
     private String playerId;
-    private Set<String> cardInGame;
+    private String email;
     private String globalScore;
     private String localScore;
 }
