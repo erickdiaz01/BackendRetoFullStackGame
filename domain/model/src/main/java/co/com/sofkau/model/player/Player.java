@@ -15,5 +15,4 @@ public class Player {
     private Set<String> cardInGame;
     private String globalScore;
     private String localScore;
-
 }
