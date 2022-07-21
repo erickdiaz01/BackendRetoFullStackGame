@@ -1,20 +1,20 @@
-package co.com.sofkau.model.game;
+package co.com.sofkau.mongo.board.game;
+
 import co.com.sofkau.model.board.Board;
-import co.com.sofkau.model.player.Player;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
 import java.util.Set;
 
 @Data
-@Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class Game {
+public class GameDocument {
+    @Id
     private String id;
     private Board board;
-    private Set<Player> players;
-    private Player player;
+    private Set<String> players;
+    private String game;
 }
