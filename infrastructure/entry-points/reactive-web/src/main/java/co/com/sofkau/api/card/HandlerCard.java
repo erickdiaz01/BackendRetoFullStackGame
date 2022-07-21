@@ -23,20 +23,20 @@ public class HandlerCard {
     private final FindCardByIdUseCase findCardByIdUseCase;
     private final DeleteCardUseCase deleteCardUseCase;
 
-    public Mono<ServerResponse> CreateCard(ServerRequest serverRequest) {
+    public Mono<ServerResponse> createCard(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(Carta.class)
                 .flatMap(card -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                         .body(createCardUseCase.saveCard(card), Carta.class));
 
     }
 
-    public Mono<ServerResponse> ListCards(ServerRequest serverRequest) {
+    public Mono<ServerResponse> listCards(ServerRequest serverRequest) {
         Flux<Carta> card = findAllCardsUseCase.findAllCards();
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON).body   (card, Carta.class);
     }
 
-    public Mono<ServerResponse> UpdateCard(ServerRequest serverRequest) {
+    public Mono<ServerResponse> updateCard(ServerRequest serverRequest) {
         String id = serverRequest.pathVariable("id");
 
         return serverRequest.bodyToMono(Carta.class)
@@ -46,14 +46,14 @@ public class HandlerCard {
                 );
     }
 
-    public Mono<ServerResponse> FindCardById(ServerRequest serverRequest){
+    public Mono<ServerResponse> findCardById(ServerRequest serverRequest){
         String id = serverRequest.pathVariable("id");
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(findCardByIdUseCase.findCardById(id),Carta.class);
     }
 
-    public Mono<ServerResponse> DeleteCardById(ServerRequest serverRequest) {
+    public Mono<ServerResponse> deleteCardById(ServerRequest serverRequest) {
         String id = serverRequest.pathVariable("id");
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
