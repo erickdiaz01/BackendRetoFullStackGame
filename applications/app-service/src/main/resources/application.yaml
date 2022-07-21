@@ -13,7 +13,7 @@ spring:
     include: null
   data:
     mongodb:
-      uri: "mongodb://localhost:27017/test"
+      uri: "mongodb+srv://user_bd:qBZl3uWjYM5gT3ur@cluster0.f9cte.mongodb.net/card-game?retryWrites=true&w=majority"
 management:
   endpoints:
     web:
