@@ -1,4 +1,4 @@
-package co.com.sofkau.usecase.deletecard;
+package co.com.sofkau.usecase.card.deletecard;
 
 import co.com.sofkau.model.carta.gateways.CartaRepository;
 import lombok.RequiredArgsConstructor;

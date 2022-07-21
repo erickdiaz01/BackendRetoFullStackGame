@@ -1,11 +1,11 @@
 package co.com.sofkau.api.card;
 
 import co.com.sofkau.model.carta.Carta;
-import co.com.sofkau.usecase.createcard.CreateCardUseCase;
-import co.com.sofkau.usecase.deletecard.DeleteCardUseCase;
-import co.com.sofkau.usecase.findallcards.FindAllCardsUseCase;
-import co.com.sofkau.usecase.findcardbyid.FindCardByIdUseCase;
-import co.com.sofkau.usecase.updatecard.UpdateCardUseCase;
+import co.com.sofkau.usecase.card.createcard.CreateCardUseCase;
+import co.com.sofkau.usecase.card.deletecard.DeleteCardUseCase;
+import co.com.sofkau.usecase.card.findallcards.FindAllCardsUseCase;
+import co.com.sofkau.usecase.card.findcardbyid.FindCardByIdUseCase;
+import co.com.sofkau.usecase.card.updatecard.UpdateCardUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
