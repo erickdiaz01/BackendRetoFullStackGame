@@ -7,9 +7,9 @@ import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
-public class CreatePlayerUserCase {
+public class CreatePlayerUseCase {
     private final PlayerRepository playerRepository;
-    public Mono<Player> savePlayer(Player player) {
+    public Mono<Player> createPlayer(Player player) {
         return playerRepository.save(player);
     }
 }
