@@ -1,12 +1,12 @@
 package co.com.sofkau.usecase.game.creategame;
 
 
-import co.com.sofkau.model.board.Board;
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.game.gateways.GameRepository;
 import co.com.sofkau.usecase.board.createboard.CreateBoardUseCase;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
+
 
 @RequiredArgsConstructor
 public class createGameUseCase {

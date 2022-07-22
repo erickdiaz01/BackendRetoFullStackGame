@@ -24,7 +24,8 @@ public RouterFunction<ServerResponse> routerFunction(HandlerCard handlerCard, Ha
             .andRoute(GET("/api/board/listboard/{id}"), handlerBoard::findBoardById)
             .andRoute(POST("/api/board/createboard"), handlerBoard::createBoard)
             .andRoute(GET("/api/game/listgame"),handlerGame::listGame)
-            .andRoute(POST("/api/game/createGame"),handlerGame::createGame);
+            .andRoute(POST("/api/game/createGame"),handlerGame::createGame)
+            .andRoute(GET("/api/game/{id}"),handlerGame::addPlayersGame);
 
     }
 }

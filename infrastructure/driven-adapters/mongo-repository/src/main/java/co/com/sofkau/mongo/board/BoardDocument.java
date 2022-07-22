@@ -1,9 +1,7 @@
 package co.com.sofkau.mongo.board;
 
 import co.com.sofkau.model.board.CardInGame;
-import co.com.sofkau.model.board.Round;
-import co.com.sofkau.model.card.Card;
-import lombok.AllArgsConstructor;
+import co.com.sofkau.model.game.Round;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;

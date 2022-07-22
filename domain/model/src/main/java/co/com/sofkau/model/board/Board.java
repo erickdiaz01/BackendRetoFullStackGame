@@ -1,6 +1,5 @@
 package co.com.sofkau.model.board;
-import co.com.sofkau.model.card.Card;
-import lombok.AllArgsConstructor;
+import co.com.sofkau.model.game.Round;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
