@@ -29,7 +29,8 @@ public class MongoRepositoryAdapterBoard extends AdapterOperations<Board, BoardD
 
     @Override
     public Mono<Board> changeStateViewCards(String boardId, Board board) {
-        return null;
+        board.setBoardId(boardId);
+        return  repository.save(new BoardDocument(board.getBoardId(),board.getCardsInGame(),board.getPrincipalMallet())).flatMap(boardDocument -> Mono.just(board));
     }
 
     @Override
