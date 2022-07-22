@@ -1,14 +1,13 @@
-package co.com.sofkau.usecase.game.creategame;
+package co.com.sofkau.usecase.game.findallgame;
 
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.game.gateways.GameRepository;
 import lombok.RequiredArgsConstructor;
-import reactor.core.publisher.Mono;
-
+import reactor.core.publisher.Flux;
 @RequiredArgsConstructor
-public class createGameUsesCase {
+public class findAllGameUseCase {
     private final GameRepository gameRepository;
-    public Mono<Game> SaveGame(Game game){
-        return gameRepository.save(game);
+    public Flux<Game> ListGame(){
+        return gameRepository.findAll();
     }
 }
