@@ -10,11 +10,9 @@ public class CardInGame {
 
     private String cardId;
     private Boolean isViewed;
-
     public String getCardId() {
         return cardId;
     }
-
     public Boolean getViewed() {
         return isViewed;
     }

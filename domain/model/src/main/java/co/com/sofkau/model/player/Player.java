@@ -12,7 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class Player {
     private String playerId;
-    private Set<String> cardInGame;
+    private String email;
     private String globalScore;
     private String localScore;
 }

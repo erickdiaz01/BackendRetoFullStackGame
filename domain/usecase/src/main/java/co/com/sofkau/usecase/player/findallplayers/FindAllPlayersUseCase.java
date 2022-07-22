@@ -10,7 +10,7 @@ import reactor.core.publisher.Flux;
 public class FindAllPlayersUseCase {
     private final PlayerRepository playerRepository;
 
-    public Flux<Player> findAllCards(){
+    public Flux<Player> findAllPlayers(){
         return playerRepository.findAll();
     }
 }
