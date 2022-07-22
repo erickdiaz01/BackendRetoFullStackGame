@@ -7,13 +7,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CardInGame {
     private String cardId;
-    private Boolean isViewed;
+    private boolean viewed;
 
     public String getCardId() {
         return cardId;
     }
 
     public Boolean getViewed() {
-        return isViewed;
+        return viewed;
     }
 }
