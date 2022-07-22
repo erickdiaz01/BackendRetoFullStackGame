@@ -1,9 +1,11 @@
 package co.com.sofkau.api.game;
 
 import co.com.sofkau.model.game.Game;
-import co.com.sofkau.usecase.game.addPlayers.addPlayersUseCase;
+import co.com.sofkau.model.player.Player;
+import co.com.sofkau.usecase.board.createboard.CreateBoardUseCase;
 import co.com.sofkau.usecase.game.creategame.createGameUseCase;
 import co.com.sofkau.usecase.game.findallgame.findAllGameUseCase;
+import co.com.sofkau.usecase.card.player.createplayer.CreatePlayerUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -15,9 +17,9 @@ import reactor.core.publisher.Mono;
 @Component
 @RequiredArgsConstructor
 public class HandlerGame {
-    private final addPlayersUseCase addPlayersUseCase;
     private final createGameUseCase  createGameUseCase;
     private final findAllGameUseCase findallgameUseCase;
+
 
 
     public Mono<ServerResponse> createGame(ServerRequest serverRequest){
@@ -29,4 +31,9 @@ public class HandlerGame {
         Flux<Game> game = findallgameUseCase.ListGame();
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(game , Game.class);
     }
+    /*
+    public Mono<ServerResponse> addPlayerGame(ServerRequest serverRequest){
+    return serverRequest.bodyToMono(Player.class).flatMap(player->
+            ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(createPlayerUseCase.createPlayer(player),Player.class));
+    }*/
 }

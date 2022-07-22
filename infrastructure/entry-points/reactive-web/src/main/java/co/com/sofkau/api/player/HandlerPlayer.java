@@ -4,11 +4,11 @@ package co.com.sofkau.api.player;
 
 
 import co.com.sofkau.model.player.Player;
-import co.com.sofkau.usecase.player.createplayer.CreatePlayerUseCase;
-import co.com.sofkau.usecase.player.deleteplayer.DeletePlayerUseCase;
-import co.com.sofkau.usecase.player.findallplayers.FindAllPlayersUseCase;
-import co.com.sofkau.usecase.player.findplayerbyid.FindPlayerByIdUseCase;
-import co.com.sofkau.usecase.player.updateplayer.UpdatePlayerUseCase;
+import co.com.sofkau.usecase.card.player.createplayer.CreatePlayerUseCase;
+import co.com.sofkau.usecase.card.player.deleteplayer.DeletePlayerUseCase;
+import co.com.sofkau.usecase.card.player.findallplayers.FindAllPlayersUseCase;
+import co.com.sofkau.usecase.card.player.findplayerbyid.FindPlayerByIdUseCase;
+import co.com.sofkau.usecase.card.player.updateplayer.UpdatePlayerUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;

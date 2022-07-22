@@ -1,4 +1,4 @@
-package co.com.sofkau.usecase.player.deleteplayer;
+package co.com.sofkau.usecase.card.player.deleteplayer;
 
 
 import co.com.sofkau.model.player.gateways.PlayerRepository;

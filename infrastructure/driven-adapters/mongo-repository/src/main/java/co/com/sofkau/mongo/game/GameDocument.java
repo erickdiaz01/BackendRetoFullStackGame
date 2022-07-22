@@ -1,6 +1,7 @@
 package co.com.sofkau.mongo.game;
 
 import co.com.sofkau.model.board.Board;
+import co.com.sofkau.model.player.Player;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,12 @@ public class GameDocument {
     @Id
     private String id;
     private Board board;
-    private Set<String> players;
-    private String game;
+    private Set<Player> players;
+    private String idPlayer;
+
+    public GameDocument(String id, Board board) {
+        this.id = id;
+        this.board = board;
+        this.idPlayer="";
+    }
 }

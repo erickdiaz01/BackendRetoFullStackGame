@@ -17,4 +17,10 @@ public class Game {
     private Board board;
     private Set<Player> players;
     private String idPlayer;
+
+    public Game(String id, Board board) {
+        this.id = id;
+        this.board = board;
+        this.idPlayer="";
+    }
 }

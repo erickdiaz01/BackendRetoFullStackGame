@@ -1,4 +1,4 @@
-package co.com.sofkau.usecase.player.updateplayer;
+package co.com.sofkau.usecase.card.player.updateplayer;
 
 
 
