@@ -1,6 +1,7 @@
 package co.com.sofkau.api.board;
 
 import co.com.sofkau.model.board.Board;
+import co.com.sofkau.model.game.Game;
 import co.com.sofkau.usecase.board.changestateviewcards.ChangeStateViewCardsUseCase;
 import co.com.sofkau.usecase.board.createboard.CreateBoardUseCase;
 import co.com.sofkau.usecase.board.deleteboard.DeleteBoardUseCase;
@@ -64,13 +65,9 @@ public class HandlerBoard {
     }
     public Mono<ServerResponse> changeStateViewCards(ServerRequest serverRequest){
         String id = serverRequest.pathVariable("id");
-        return serverRequest.bodyToMono(Board.class)
-                .flatMap(board -> ServerResponse.ok()
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(changeStateViewCardsUseCase
-                                .changeStateViewOfCards(id,board),Board.class));
+        Board board = findByIdBoardUseCase.findBoardById(id).toFuture().join();
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(changeStateViewCardsUseCase.changeStateViewOfCards(id,board), Game.class);
     }
-
     public  Mono<ServerResponse> ifNotWinnerChangeRound(ServerRequest serverRequest){
         String id = serverRequest.pathVariable("id");
 

@@ -13,15 +13,21 @@ public class ChangeStateViewCardsUseCase {
     private final BoardRepository boardRepository;
 
     public Mono<Board> changeStateViewOfCards(String boardId, Board board){
-        /* board.getCardsInGame().entrySet()
+         /*board.getCardsInGame().entrySet()
                 .stream()
                 .map(stringCardInGameEntry ->
                 board.getCardsInGame()
-                        .put(stringCardInGameEntry.getKey(),new CardInGame(stringCardInGameEntry.getValue().getCard(),!stringCardInGameEntry.getValue().isViewed()))
+                        .put(stringCardInGameEntry.getKey(),new CardInGame(stringCardInGameEntry.getValue().getCard(),stringCardInGameEntry.getValue().isViewed()==true?false:true))
                 );*/
         board.getCardsInGame().forEach((s, cardInGame) -> {
-               board.getCardsInGame().put(s,new CardInGame(cardInGame.getCardId(), true));
+            if(cardInGame.isViewed()==true){
+                cardInGame.setViewed(false);
+            }else {
+                cardInGame.setViewed(true);
+            }
+               board.getCardsInGame().put(s,cardInGame);
         });
+
         return boardRepository.changeStateViewCards(boardId,board);
     }
 }
