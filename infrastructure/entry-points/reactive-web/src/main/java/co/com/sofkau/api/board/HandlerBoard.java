@@ -8,7 +8,7 @@ import co.com.sofkau.usecase.board.findbyidboard.FindByIdBoardUseCase;
 import co.com.sofkau.usecase.board.ifnotwinnerchangeround.IfNotWinnerChangeRoundUseCase;
 import co.com.sofkau.usecase.board.receivecards.ReceiveCardsUseCase;
 import co.com.sofkau.usecase.board.receivecardsofleftplayer.ReceiveCardsOfLeftPlayerUseCase;
-import co.com.sofkau.usecase.board.selectwinnercard.SelectRoundWinnerUseCase;
+import co.com.sofkau.usecase.board.selectroundwinner.SelectRoundWinnerUseCase;
 import co.com.sofkau.usecase.board.updateboard.UpdateBoardUseCase;
 import co.com.sofkau.usecase.board.verifyallplayerscards.VerifyAllPlayersCardsUseCase;
 import lombok.RequiredArgsConstructor;
