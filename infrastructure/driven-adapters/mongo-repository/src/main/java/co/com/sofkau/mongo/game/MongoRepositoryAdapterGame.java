@@ -37,5 +37,10 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
     public Mono<Player> Winner(String id) {
         return null;
     }
+
+    @Override
+    public Mono<Long> countPlayers(String gameId, Game game) {
+        return Mono.just(game.getPlayers().stream().count());
+    }
 }
 

@@ -53,7 +53,8 @@ public class MongoRepositoryAdapterBoard extends AdapterOperations<Board, BoardD
     }
 
     @Override
-    public Mono<Board> verifyAllPlayersCards(String boardId, Board board) {
+    public Mono<Board> showRoundWinner(String boardId, Board board) {
         return null;
     }
+
 }

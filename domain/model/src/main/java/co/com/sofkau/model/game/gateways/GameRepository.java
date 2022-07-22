@@ -11,9 +11,12 @@ import java.util.Set;
 public interface GameRepository {
     Mono<Game> save(Game game);
     Flux<Game> findAll();
+    Mono<Game> findById(String gameId);
     Mono<Game> addPlayerGame(String id , Game game);
 
     Flux<Card> assingDeck(Set<Card> card);
     Mono<Player> Winner (String id);
+    Mono<Long> countPlayers(String gameId,Game game);
+
 
 }
