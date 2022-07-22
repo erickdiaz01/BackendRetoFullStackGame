@@ -1,11 +1,14 @@
 package co.com.sofkau.mongo.player;
 
+
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -16,6 +19,24 @@ public class PlayerDocument {
     @Id
     private String playerId;
     private String email;
-    private String globalScore;
-    private String localScore;
+    private Integer globalScore;
+    private Integer localScore;
+    private Set<String> cards;
+
+    public PlayerDocument(String playerId,String email) {
+        this.playerId = playerId;
+        this.email= email;
+        this.globalScore= 0;
+        this.localScore = 0;
+        this.cards= new HashSet<>();
+    }
+
+    public PlayerDocument(String email){
+        this.email= email;
+        this.globalScore= 0;
+        this.localScore = 0;
+        this.cards= new HashSet<>();
+    }
 }
+
+

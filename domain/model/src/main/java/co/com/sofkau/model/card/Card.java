@@ -1,4 +1,4 @@
-package co.com.sofkau.model.carta;
+package co.com.sofkau.model.card;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class Carta {
+public class Card {
     private String cardId;
     private String nameOfCard;
     private String features;

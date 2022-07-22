@@ -7,7 +7,6 @@ import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 
-import java.util.function.Function;
 
 @Repository
 public class MongoRepositoryAdapterBoard extends AdapterOperations<Board, BoardDocument, String, MongoDBRepositoryBoard>

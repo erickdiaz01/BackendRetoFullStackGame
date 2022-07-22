@@ -1,6 +1,6 @@
 package co.com.sofkau.api.card;
 
-import co.com.sofkau.model.carta.Carta;
+import co.com.sofkau.model.card.Card;
 import co.com.sofkau.usecase.card.createcard.CreateCardUseCase;
 import co.com.sofkau.usecase.card.deletecard.DeleteCardUseCase;
 import co.com.sofkau.usecase.card.findallcards.FindAllCardsUseCase;
@@ -24,25 +24,25 @@ public class HandlerCard {
     private final DeleteCardUseCase deleteCardUseCase;
 
     public Mono<ServerResponse> createCard(ServerRequest serverRequest) {
-        return serverRequest.bodyToMono(Carta.class)
+        return serverRequest.bodyToMono(Card.class)
                 .flatMap(card -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-                        .body(createCardUseCase.saveCard(card), Carta.class));
+                        .body(createCardUseCase.saveCard(card), Card.class));
 
     }
 
     public Mono<ServerResponse> listCards(ServerRequest serverRequest) {
-        Flux<Carta> card = findAllCardsUseCase.findAllCards();
+        Flux<Card> card = findAllCardsUseCase.findAllCards();
         return ServerResponse.ok()
-                .contentType(MediaType.APPLICATION_JSON).body   (card, Carta.class);
+                .contentType(MediaType.APPLICATION_JSON).body   (card, Card.class);
     }
 
     public Mono<ServerResponse> updateCard(ServerRequest serverRequest) {
         String id = serverRequest.pathVariable("id");
 
-        return serverRequest.bodyToMono(Carta.class)
+        return serverRequest.bodyToMono(Card.class)
                 .flatMap(card -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(updateCardUseCase.updateCard(id, card), Carta.class)
+                        .body(updateCardUseCase.updateCard(id, card), Card.class)
                 );
     }
 
@@ -50,14 +50,14 @@ public class HandlerCard {
         String id = serverRequest.pathVariable("id");
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(findCardByIdUseCase.findCardById(id),Carta.class);
+                .body(findCardByIdUseCase.findCardById(id), Card.class);
     }
 
     public Mono<ServerResponse> deleteCardById(ServerRequest serverRequest) {
         String id = serverRequest.pathVariable("id");
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(deleteCardUseCase.deleteCardById(id), Carta.class);
+                .body(deleteCardUseCase.deleteCardById(id), Card.class);
     }
 }
 

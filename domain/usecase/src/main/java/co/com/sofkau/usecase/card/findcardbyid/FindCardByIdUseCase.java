@@ -1,14 +1,14 @@
 package co.com.sofkau.usecase.card.findcardbyid;
 
-import co.com.sofkau.model.carta.Carta;
-import co.com.sofkau.model.carta.gateways.CartaRepository;
+import co.com.sofkau.model.card.Card;
+import co.com.sofkau.model.card.gateways.CardRepository;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
 public class FindCardByIdUseCase {
-    private final CartaRepository cartaRepository;
-    public Mono<Carta> findCardById(String idCard){
-        return cartaRepository.findById(idCard);
+    private final CardRepository cardRepository;
+    public Mono<Card> findCardById(String idCard){
+        return cardRepository.findById(idCard);
     }
 }
