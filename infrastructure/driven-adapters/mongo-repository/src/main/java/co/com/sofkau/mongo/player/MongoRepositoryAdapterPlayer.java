@@ -22,6 +22,10 @@ public class MongoRepositoryAdapterPlayer extends AdapterOperations<Player, Play
         return null;
     }
 
+    @Override
+    public Mono<Player> assignCardToPlayer(String playerId, Player player) {
+        return null;
+    }
 
 
 }
