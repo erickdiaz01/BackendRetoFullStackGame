@@ -1,5 +1,5 @@
 package co.com.sofkau.model.board;
-import co.com.sofkau.model.carta.Carta;
+import co.com.sofkau.model.card.Card;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

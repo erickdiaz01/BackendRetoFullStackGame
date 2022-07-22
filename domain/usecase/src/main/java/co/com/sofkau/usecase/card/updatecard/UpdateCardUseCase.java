@@ -1,14 +1,14 @@
 package co.com.sofkau.usecase.card.updatecard;
 
-import co.com.sofkau.model.carta.Carta;
-import co.com.sofkau.model.carta.gateways.CartaRepository;
+import co.com.sofkau.model.card.Card;
+import co.com.sofkau.model.card.gateways.CardRepository;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
 public class UpdateCardUseCase {
-    private final CartaRepository cartaRepository;
-   public Mono<Carta> updateCard(String cardId, Carta card){
-        return cartaRepository.update(cardId,card);
+    private final CardRepository cardRepository;
+   public Mono<Card> updateCard(String cardId, Card card){
+        return cardRepository.update(cardId,card);
     }
 }
