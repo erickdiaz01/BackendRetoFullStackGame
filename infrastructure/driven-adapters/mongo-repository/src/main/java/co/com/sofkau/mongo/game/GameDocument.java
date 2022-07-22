@@ -1,4 +1,4 @@
-package co.com.sofkau.mongo.board.game;
+package co.com.sofkau.mongo.game;
 
 import co.com.sofkau.model.board.Board;
 import lombok.AllArgsConstructor;

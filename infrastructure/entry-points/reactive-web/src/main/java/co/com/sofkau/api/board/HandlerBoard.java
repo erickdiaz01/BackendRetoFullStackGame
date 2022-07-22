@@ -73,6 +73,57 @@ public class HandlerBoard {
                                 .changeStateViewOfCards(id,board),Board.class));
     }
 
+    public  Mono<ServerResponse> ifNotWinnerChangeRound(ServerRequest serverRequest){
+        String id = serverRequest.pathVariable("id");
+
+        return serverRequest.bodyToMono(Board.class)
+                .flatMap(board -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(ifNotWinnerChangeRoundUseCase
+                                .ifNotWinnerChangeRound(id,board),Board.class));
+    }
+
+    public  Mono<ServerResponse> selectWinnerCard(ServerRequest serverRequest){
+        String id = serverRequest.pathVariable("id");
+
+        return serverRequest.bodyToMono(Board.class)
+                .flatMap(board -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(selectWinnerCardUseCase
+                                .selectWinnerCard(id,board),Board.class));
+    }
+
+    public  Mono<ServerResponse> receiveCards(ServerRequest serverRequest){
+        String id = serverRequest.pathVariable("id");
+
+        return serverRequest.bodyToMono(Board.class)
+                .flatMap(board -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(receiveCardsUseCase.receiveCards
+                                (id,board),Board.class));
+    }
+
+    public  Mono<ServerResponse> receiveCardsOfLeftPlayer(ServerRequest serverRequest){
+        String id = serverRequest.pathVariable("id");
+
+        return serverRequest.bodyToMono(Board.class)
+                .flatMap(board -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(receiveCardsOfLeftPlayerUseCase.receiveCardsOfLeftPlayer
+                                (id,board),Board.class));
+    }
+
+    public  Mono<ServerResponse> verifyAllPlayersCards(ServerRequest serverRequest){
+        String id = serverRequest.pathVariable("id");
+
+        return serverRequest.bodyToMono(Board.class)
+                .flatMap(board -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(verifyAllPlayersCardsUseCase.verifyAllplayersCards(id,board),Board.class));
+    }
+
+
+
 
 
 }

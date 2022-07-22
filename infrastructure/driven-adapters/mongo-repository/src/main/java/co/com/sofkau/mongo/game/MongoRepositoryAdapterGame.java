@@ -1,4 +1,4 @@
-package co.com.sofkau.mongo.board.game;
+package co.com.sofkau.mongo.game;
 
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.game.gateways.GameRepository;
