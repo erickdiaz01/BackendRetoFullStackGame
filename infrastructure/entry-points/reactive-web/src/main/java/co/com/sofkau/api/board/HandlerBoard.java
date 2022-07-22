@@ -1,7 +1,6 @@
 package co.com.sofkau.api.board;
 
 import co.com.sofkau.model.board.Board;
-import co.com.sofkau.model.carta.Carta;
 import co.com.sofkau.usecase.board.createboard.CreateBoardUseCase;
 import co.com.sofkau.usecase.board.deleteboard.DeleteBoardUseCase;
 import co.com.sofkau.usecase.board.findbyidboard.FindByIdBoardUseCase;

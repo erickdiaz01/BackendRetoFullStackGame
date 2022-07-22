@@ -1,14 +1,14 @@
 package co.com.sofkau.usecase.card.deletecard;
 
-import co.com.sofkau.model.carta.gateways.CartaRepository;
+import co.com.sofkau.model.card.gateways.CardRepository;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
 public class DeleteCardUseCase {
-    private final CartaRepository cartaRepository;
+    private final CardRepository cardRepository;
 
     public Mono<Void> deleteCardById(String cardId){
-        return cartaRepository.deleteById(cardId);
+        return cardRepository.deleteById(cardId);
     }
 }
