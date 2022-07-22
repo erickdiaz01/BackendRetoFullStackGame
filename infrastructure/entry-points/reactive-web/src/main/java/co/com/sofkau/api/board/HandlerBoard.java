@@ -80,7 +80,7 @@ public class HandlerBoard {
                         .body(ifNotWinnerChangeRoundUseCase
                                 .ifNotWinnerChangeRound(id,board),Board.class));
     }
-    /*
+
     public  Mono<ServerResponse> selectRoundWinner(ServerRequest serverRequest){
         String id = serverRequest.pathVariable("id");
 
@@ -89,7 +89,7 @@ public class HandlerBoard {
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(selectRoundWinnerUseCase
                                 .selectRoundWinner(id,board),Board.class));
-    }*/
+    }
 
     public  Mono<ServerResponse> receiveCards(ServerRequest serverRequest){
         String id = serverRequest.pathVariable("id");
