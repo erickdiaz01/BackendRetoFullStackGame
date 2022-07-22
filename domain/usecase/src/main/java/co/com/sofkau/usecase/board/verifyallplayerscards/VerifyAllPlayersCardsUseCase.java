@@ -9,6 +9,7 @@ import reactor.core.publisher.Mono;
 public class VerifyAllPlayersCardsUseCase {
     private final BoardRepository boardRepository;
 
+//TODO
     public Mono<Board> verifyAllplayersCards(String boardId,Board board){
         return boardRepository.verifyAllPlayersCards(boardId,board);
     }

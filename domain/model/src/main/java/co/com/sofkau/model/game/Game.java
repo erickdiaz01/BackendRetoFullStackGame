@@ -23,4 +23,10 @@ public class Game {
         this.board = board;
         this.idPlayer="";
     }
+
+    public Game(String id, Board board, Set<Player> players) {
+        this.id = id;
+        this.board = board;
+        this.players = players;
+    }
 }

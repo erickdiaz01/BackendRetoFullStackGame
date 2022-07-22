@@ -13,10 +13,6 @@ public interface GameRepository {
     Flux<Game> findAll();
     Mono<Game> addPlayerGame(String id , Game game);
 
-    Mono<Player> addPlayer(Player player);
-
-
-
     Flux<Card> assingDeck(Set<Card> card);
     Mono<Player> Winner (String id);
 

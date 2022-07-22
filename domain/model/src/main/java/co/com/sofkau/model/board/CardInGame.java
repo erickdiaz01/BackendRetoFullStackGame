@@ -1,19 +1,15 @@
 package co.com.sofkau.model.board;
 
+import co.com.sofkau.model.card.Card;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class CardInGame {
-    private String cardId;
+    private Card card;
     private boolean viewed;
 
-    public String getCardId() {
-        return cardId;
-    }
-
-    public Boolean getViewed() {
-        return viewed;
-    }
 }

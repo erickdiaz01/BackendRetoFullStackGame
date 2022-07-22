@@ -35,7 +35,6 @@ public class HandlerGame {
         return serverRequest.bodyToMono(Game.class).flatMap(game->
             ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                     .body(addPlayersUseCase.savePlayer(id,game),Game.class));
-
     }
     /*
     public Mono<ServerResponse> addPlayerGame(ServerRequest serverRequest){
