@@ -8,7 +8,7 @@ import co.com.sofkau.usecase.board.findbyidboard.FindByIdBoardUseCase;
 import co.com.sofkau.usecase.board.ifnotwinnerchangeround.IfNotWinnerChangeRoundUseCase;
 import co.com.sofkau.usecase.board.receivecards.ReceiveCardsUseCase;
 import co.com.sofkau.usecase.board.receivecardsofleftplayer.ReceiveCardsOfLeftPlayerUseCase;
-import co.com.sofkau.usecase.board.selectwinnercard.SelectWinnerCardUseCase;
+import co.com.sofkau.usecase.board.selectwinnercard.SelectRoundWinnerUseCase;
 import co.com.sofkau.usecase.board.updateboard.UpdateBoardUseCase;
 import co.com.sofkau.usecase.board.verifyallplayerscards.VerifyAllPlayersCardsUseCase;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +28,7 @@ public class HandlerBoard {
 
     private final ChangeStateViewCardsUseCase changeStateViewCardsUseCase;
     private final IfNotWinnerChangeRoundUseCase ifNotWinnerChangeRoundUseCase;
-    private final SelectWinnerCardUseCase selectWinnerCardUseCase;
+    private final SelectRoundWinnerUseCase selectRoundWinnerUseCase;
     private final ReceiveCardsUseCase receiveCardsUseCase;
     private final ReceiveCardsOfLeftPlayerUseCase receiveCardsOfLeftPlayerUseCase;
     private final VerifyAllPlayersCardsUseCase verifyAllPlayersCardsUseCase;
@@ -83,14 +83,14 @@ public class HandlerBoard {
                                 .ifNotWinnerChangeRound(id,board),Board.class));
     }
 
-    public  Mono<ServerResponse> selectWinnerCard(ServerRequest serverRequest){
+    public  Mono<ServerResponse> selectRoundWinner(ServerRequest serverRequest){
         String id = serverRequest.pathVariable("id");
 
         return serverRequest.bodyToMono(Board.class)
                 .flatMap(board -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(selectWinnerCardUseCase
-                                .selectWinnerCard(id,board),Board.class));
+                        .body(selectRoundWinnerUseCase
+                                .selectRoundWinner(id,board),Board.class));
     }
 
     public  Mono<ServerResponse> receiveCards(ServerRequest serverRequest){

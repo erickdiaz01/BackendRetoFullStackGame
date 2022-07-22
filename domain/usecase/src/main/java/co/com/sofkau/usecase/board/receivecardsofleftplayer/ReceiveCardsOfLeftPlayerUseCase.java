@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class ReceiveCardsOfLeftPlayerUseCase {
     private final BoardRepository boardRepository;
-
+//TODO
     public Mono<Board> receiveCardsOfLeftPlayer(String boardId, Board board){
         return boardRepository.receiveCardsOfLeftPlayer(boardId,board);
     }

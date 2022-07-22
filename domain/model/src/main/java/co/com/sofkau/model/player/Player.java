@@ -1,4 +1,5 @@
 package co.com.sofkau.model.player;
+import co.com.sofkau.model.board.CardInGame;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +17,7 @@ public class Player {
     private String email;
     private Integer globalScore;
     private Integer localScore;
-    private Set<String> cards;
+    private Set<CardInGame> cards;
 
     public Player(String playerId,String email) {
         this.playerId = playerId;
