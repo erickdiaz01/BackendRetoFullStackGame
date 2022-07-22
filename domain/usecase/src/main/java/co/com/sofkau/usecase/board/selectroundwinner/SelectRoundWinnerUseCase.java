@@ -1,8 +1,7 @@
-package co.com.sofkau.usecase.board.selectwinnercard;
+package co.com.sofkau.usecase.board.selectroundwinner;
 
 import co.com.sofkau.model.board.Board;
 import co.com.sofkau.model.board.gateways.BoardRepository;
-import co.com.sofkau.model.player.Player;
 import co.com.sofkau.usecase.player.assigncardtoplayer.AssignCardToPlayerUseCase;
 //import co.com.sofkau.usecase.player.findplayerbyid.FindPlayerByIdUseCase;
 import lombok.RequiredArgsConstructor;
