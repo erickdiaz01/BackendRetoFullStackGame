@@ -1,5 +1,7 @@
 package co.com.sofkau.mongo.game;
 
+import co.com.sofkau.model.board.Board;
+import co.com.sofkau.model.board.gateways.BoardRepository;
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.game.gateways.GameRepository;
 import co.com.sofkau.model.player.Player;
@@ -14,7 +16,6 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
 
     public MongoRepositoryAdapterGame(MongoDbRepositoryGame repository, ObjectMapper mapper) {
         super(repository, mapper, d -> mapper.map(d, Game.class));
-
     }
 
     @Override

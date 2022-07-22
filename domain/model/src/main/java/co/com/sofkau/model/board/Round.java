@@ -9,13 +9,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Round {
     private Integer number;
-    private LocalDateTime time;
+    private String time;
 
     public Integer getNumber() {
         return number;
     }
 
-    public LocalDateTime getTime() {
+    public String getTime() {
         return time;
     }
 }
