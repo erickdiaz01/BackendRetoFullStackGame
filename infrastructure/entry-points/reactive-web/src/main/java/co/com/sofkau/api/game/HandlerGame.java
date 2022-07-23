@@ -87,7 +87,7 @@ public class HandlerGame {
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(verifyPlayerLosedUseCase.verifyPlayerLosed(id, game), Game.class);
 
     }
-    }
+    
     public Mono<ServerResponse> selectCard(ServerRequest serverRequest){
         String playerId = serverRequest.pathVariable("playerId");
         String cardId = serverRequest.pathVariable("cardId");
