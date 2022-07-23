@@ -18,5 +18,7 @@ public interface GameRepository {
     Mono<Player> Winner (String id);
     Mono<Long> countPlayers(String gameId,Game game);
 
+    Mono<Game> dealCards(String gameId,Game game);
+
 
 }
