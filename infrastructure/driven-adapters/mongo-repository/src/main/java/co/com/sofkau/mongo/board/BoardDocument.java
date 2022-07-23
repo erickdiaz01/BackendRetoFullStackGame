@@ -1,6 +1,7 @@
 package co.com.sofkau.mongo.board;
 
 import co.com.sofkau.model.board.CardInGame;
+import co.com.sofkau.model.card.Card;
 import co.com.sofkau.model.game.Round;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,15 +20,15 @@ public class BoardDocument {
     private String boardId;
 
     private Map<String, CardInGame> cardsInGame;
-    private Set<String> principalMallet;
+    private Set<Card> principalMallet;
 
-    public BoardDocument(String boardId,  Map<String, CardInGame> cardsInGame, Set<String> principalMallet) {
+    public BoardDocument(String boardId,  Map<String, CardInGame> cardsInGame, Set<Card> principalMallet) {
         this.boardId = boardId;
         this.cardsInGame = cardsInGame;
         this.principalMallet = principalMallet;
     }
 
-    public BoardDocument(String boardId,  Set<String> principalMallet) {
+    public BoardDocument(String boardId,  Set<Card> principalMallet) {
         this.boardId = boardId;
         this.cardsInGame =new HashMap<>();
 

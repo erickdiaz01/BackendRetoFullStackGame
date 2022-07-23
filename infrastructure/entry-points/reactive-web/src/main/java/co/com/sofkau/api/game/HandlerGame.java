@@ -4,6 +4,7 @@ import co.com.sofkau.model.game.Game;
 import co.com.sofkau.usecase.game.addPlayers.addPlayersUseCase;
 import co.com.sofkau.usecase.game.countplayers.countPlayersUseCase;
 import co.com.sofkau.usecase.game.creategame.createGameUseCase;
+import co.com.sofkau.usecase.game.dealcards.DealCardsUseCase;
 import co.com.sofkau.usecase.game.findallgame.findAllGameUseCase;
 import co.com.sofkau.usecase.game.findbyid.findGameByIdUseCase;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,7 @@ public class HandlerGame {
     private final findGameByIdUseCase findGameByIdUseCase;
     private final addPlayersUseCase addPlayersUseCase;
     private final countPlayersUseCase countPlayersUseCase;
+    private final DealCardsUseCase dealCardsUseCase;
 
 
     public Mono<ServerResponse> createGame(ServerRequest serverRequest){
@@ -52,4 +54,10 @@ public class HandlerGame {
        Game game = findGameByIdUseCase.findGameById(id).toFuture().join();
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(countPlayersUseCase.countPlayers(id,game),Game.class);
    }
+
+    public Mono<ServerResponse> dealCards(ServerRequest serverRequest){
+        String id = serverRequest.pathVariable("id");
+        Game game = findGameByIdUseCase.findGameById(id).toFuture().join();
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(dealCardsUseCase.dealCards(id,game),Game.class);
+    }
 }

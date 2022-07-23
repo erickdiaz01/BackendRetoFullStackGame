@@ -42,5 +42,12 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
     public Mono<Long> countPlayers(String gameId, Game game) {
         return Mono.just(game.getPlayers().stream().count());
     }
+
+    @Override
+    public Mono<Game> dealCards(String gameId, Game game) {
+        game.setId(gameId);
+        return repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound()))
+                .flatMap(gameDocument -> Mono.just(game));
+    }
 }
 

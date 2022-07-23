@@ -1,4 +1,5 @@
 package co.com.sofkau.model.board;
+import co.com.sofkau.model.card.Card;
 import co.com.sofkau.model.game.Round;
 import lombok.Builder;
 import lombok.Data;
@@ -14,19 +15,18 @@ import java.util.Set;
 public class Board {
     private String boardId;
     private Map<String,CardInGame> cardsInGame;
-    private Set<String> principalMallet;
+    private Set<Card> principalMallet;
 
-    public Board(String boardId, Map<String, CardInGame> cardsInGame, Set<String> principalMallet) {
+    public Board(String boardId, Map<String, CardInGame> cardsInGame, Set<Card> principalMallet) {
         this.boardId = boardId;
 
         this.cardsInGame = cardsInGame;
         this.principalMallet = principalMallet;
     }
 
-    public Board(String boardId, Set<String> principalMallet) {
+    public Board(String boardId, Set<Card> principalMallet) {
         this.boardId = boardId;
         this.cardsInGame =new HashMap<>();
-
         this.principalMallet = principalMallet;
     }
 }
