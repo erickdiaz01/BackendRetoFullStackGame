@@ -13,12 +13,12 @@ public interface GameRepository {
     Flux<Game> findAll();
     Mono<Game> findById(String gameId);
     Mono<Game> addPlayerGame(String id , Game game);
-
-    Flux<Card> assingDeck(Set<Card> card);
     Mono<Player> Winner (String id);
     Mono<Long> countPlayers(String gameId,Game game);
 
     Mono<Game> dealCards(String gameId,Game game);
 
-
+    Mono<Game> surrenderPlayer(String playerId, Game game, String gameId);
+    /*
+    Mono<Game> betCardPlayer(String gameId , String playerId , String cardId, Game game);*/
 }

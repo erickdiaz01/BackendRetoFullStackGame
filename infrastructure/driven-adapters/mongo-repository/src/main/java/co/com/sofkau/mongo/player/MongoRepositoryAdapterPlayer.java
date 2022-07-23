@@ -1,6 +1,7 @@
 package co.com.sofkau.mongo.player;
 
 
+import co.com.sofkau.model.player.CardInGame;
 import co.com.sofkau.model.player.Player;
 
 import co.com.sofkau.model.player.gateways.PlayerRepository;
@@ -24,6 +25,19 @@ public class MongoRepositoryAdapterPlayer extends AdapterOperations<Player, Play
 
     @Override
     public Mono<Player> assignCardToPlayer(String playerId, Player player) {
+        return null;
+    }
+
+
+    public Mono <Player> surrenderPlayer(String playerId, Player player){
+        player.setPlayerId(playerId);
+        return repository
+                .save(new PlayerDocument(player.getPlayerId(), player.getEmail(), player.getGlobalScore(),player.getLocalScore(),player.getCards()))
+                .flatMap(p -> Mono.just(player));
+    }
+
+    @Override
+    public Mono<CardInGame> selectCard(CardInGame cardInGame) {
         return null;
     }
 
