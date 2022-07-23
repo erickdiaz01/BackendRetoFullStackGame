@@ -1,12 +1,9 @@
 package co.com.sofkau.usecase.board.changestateviewcards;
 
 import co.com.sofkau.model.board.Board;
-import co.com.sofkau.model.board.CardInGame;
 import co.com.sofkau.model.board.gateways.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
-
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class ChangeStateViewCardsUseCase {
@@ -20,6 +17,8 @@ public class ChangeStateViewCardsUseCase {
                         .put(stringCardInGameEntry.getKey(),new CardInGame(stringCardInGameEntry.getValue().getCard(),stringCardInGameEntry.getValue().isViewed()==true?false:true))
                 );*/
         board.getCardsInGame().forEach((s, cardInGame) -> {
+
+               board.getCardsInGame().put(s,new CardInGame(cardInGame.getCard(), true));
             if(cardInGame.isViewed()==true){
                 cardInGame.setViewed(false);
             }else {

@@ -28,9 +28,10 @@ public class GameDocument {
         this.idPlayer="";
     }
 
-    public GameDocument(String id, Board board, Set<Player> players) {
-        this.id = id;
+    public GameDocument( Board board, Set<Player> players) {
+
         this.board = board;
         this.players = players;
+        this.idPlayer="";
     }
 }
