@@ -28,4 +28,13 @@ public class MongoRepositoryAdapterPlayer extends AdapterOperations<Player, Play
     }
 
 
+    public Mono <Player> surrenderPlayer(String playerId, Player player){
+        player.setPlayerId(playerId);
+        return repository
+                .save(new PlayerDocument(player.getPlayerId(), player.getEmail(), player.getGlobalScore(),player.getLocalScore(),player.getCards()))
+                .flatMap(p -> Mono.just(player));
+    }
+
+
+
 }
