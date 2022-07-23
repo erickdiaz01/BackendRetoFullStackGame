@@ -24,6 +24,6 @@ public interface GameRepository {
 
     Mono<Game> surrenderPlayer(String playerId, Game game, String gameId);
     Mono<CardInGame> selectCard (CardInGame cardInGame);
-    /*
-    Mono<Game> betCardPlayer(String gameId , String playerId , String cardId, Game game);*/
+
+    Mono<Game> betCardPlayer(String gameId , Game game);
 }

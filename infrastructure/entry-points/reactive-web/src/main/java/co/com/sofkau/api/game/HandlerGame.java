@@ -3,6 +3,7 @@ package co.com.sofkau.api.game;
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.player.Player;
 import co.com.sofkau.usecase.game.addPlayers.addPlayersUseCase;
+import co.com.sofkau.usecase.game.betCard.betCardUseCase;
 import co.com.sofkau.usecase.game.countplayers.countPlayersUseCase;
 import co.com.sofkau.usecase.game.creategame.createGameUseCase;
 import co.com.sofkau.usecase.game.dealcards.DealCardsUseCase;
@@ -34,6 +35,7 @@ public class HandlerGame {
 
     private final SurrenderPlayerUseCase surrenderPlayerUseCase;
     private  final selectCardUseCase selectCardUseCase;
+    private final betCardUseCase betCardUseCase;
 
 
     public Mono<ServerResponse> createGame(ServerRequest serverRequest){
@@ -94,5 +96,11 @@ public class HandlerGame {
         String gameId = serverRequest.pathVariable("gameId");
 
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(selectCardUseCase.selectCard(cardId,playerId,gameId),Game.class);
+    }
+    public Mono<ServerResponse> betCardPlayer(ServerRequest serverRequest){
+        String playerId = serverRequest.pathVariable("playerId");
+        String cardId = serverRequest.pathVariable("cardId");
+        String gameId = serverRequest.pathVariable("gameId");
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(betCardUseCase.betCardPlayer(gameId,playerId,cardId),Game.class);
     }
 }

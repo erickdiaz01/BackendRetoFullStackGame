@@ -13,7 +13,7 @@ public class VerifyPlayerLosedUseCase {
 
     public Mono<Game> verifyPlayerLosed(String gameId, Game game){
         game.getPlayers().stream().filter(player -> player.getCards().size()==0).map(player -> game.getPlayers().remove(player));
-        if(game.getPlayers().size()==1){
+        if(game.getPlayers().size()<2){
             //TODO: ACTIVAR CASO DE USO GANADOR DEL JUEGO
         }else{
             //TODO: CAMBIAR DE RONDA
