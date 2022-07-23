@@ -2,8 +2,8 @@ package co.com.sofkau.usecase.board.selectroundwinner;
 
 import co.com.sofkau.model.board.Board;
 import co.com.sofkau.model.board.gateways.BoardRepository;
+import co.com.sofkau.usecase.card.player.findplayerbyid.FindPlayerByIdUseCase;
 import co.com.sofkau.usecase.player.assigncardtoplayer.AssignCardToPlayerUseCase;
-//import co.com.sofkau.usecase.player.findplayerbyid.FindPlayerByIdUseCase;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
@@ -12,7 +12,7 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 public class SelectRoundWinnerUseCase {
-   /* private final BoardRepository boardRepository;
+    private final BoardRepository boardRepository;
     private final FindPlayerByIdUseCase findPlayerByIdUseCase;
     private final AssignCardToPlayerUseCase assignCardToPlayerUseCase;
 
@@ -31,5 +31,5 @@ public class SelectRoundWinnerUseCase {
        assignCardToPlayerUseCase.assignCardToPlayer(winnerPlayer.getPlayerId(),winnerPlayer);
        board.getCardsInGame().clear();
         return boardRepository.selectWinnerCard(boardId,board);
-    }*/
+    }
 }

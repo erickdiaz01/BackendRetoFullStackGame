@@ -18,21 +18,19 @@ public class BoardDocument {
     @Id
     private String boardId;
 
-    private Round round;
     private Map<String, CardInGame> cardsInGame;
     private Set<String> principalMallet;
 
-    public BoardDocument(String boardId, Round round, Map<String, CardInGame> cardsInGame, Set<String> principalMallet) {
+    public BoardDocument(String boardId,  Map<String, CardInGame> cardsInGame, Set<String> principalMallet) {
         this.boardId = boardId;
-        this.round = round;
         this.cardsInGame = cardsInGame;
         this.principalMallet = principalMallet;
     }
 
-    public BoardDocument(String boardId, Round round, Set<String> principalMallet) {
+    public BoardDocument(String boardId,  Set<String> principalMallet) {
         this.boardId = boardId;
         this.cardsInGame =new HashMap<>();
-        this.round=round;
+
         this.principalMallet = principalMallet;
     }
 }

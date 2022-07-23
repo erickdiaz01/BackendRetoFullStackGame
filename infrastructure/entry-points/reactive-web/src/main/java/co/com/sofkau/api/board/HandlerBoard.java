@@ -10,7 +10,6 @@ import co.com.sofkau.usecase.board.receivecards.ReceiveCardsUseCase;
 import co.com.sofkau.usecase.board.receivecardsofleftplayer.ReceiveCardsOfLeftPlayerUseCase;
 import co.com.sofkau.usecase.board.selectroundwinner.SelectRoundWinnerUseCase;
 import co.com.sofkau.usecase.board.updateboard.UpdateBoardUseCase;
-import co.com.sofkau.usecase.board.verifyallplayerscards.VerifyAllPlayersCardsUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -31,7 +30,6 @@ public class HandlerBoard {
     private final SelectRoundWinnerUseCase selectRoundWinnerUseCase;
     private final ReceiveCardsUseCase receiveCardsUseCase;
     private final ReceiveCardsOfLeftPlayerUseCase receiveCardsOfLeftPlayerUseCase;
-    private final VerifyAllPlayersCardsUseCase verifyAllPlayersCardsUseCase;
 
 
     public Mono<ServerResponse> createBoard(ServerRequest serverRequest) {
@@ -82,7 +80,7 @@ public class HandlerBoard {
                         .body(ifNotWinnerChangeRoundUseCase
                                 .ifNotWinnerChangeRound(id,board),Board.class));
     }
-    /*
+
     public  Mono<ServerResponse> selectRoundWinner(ServerRequest serverRequest){
         String id = serverRequest.pathVariable("id");
 
@@ -91,7 +89,7 @@ public class HandlerBoard {
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(selectRoundWinnerUseCase
                                 .selectRoundWinner(id,board),Board.class));
-    }*/
+    }
 
     public  Mono<ServerResponse> receiveCards(ServerRequest serverRequest){
         String id = serverRequest.pathVariable("id");
@@ -113,14 +111,7 @@ public class HandlerBoard {
                                 (id,board),Board.class));
     }
 
-    public  Mono<ServerResponse> verifyAllPlayersCards(ServerRequest serverRequest){
-        String id = serverRequest.pathVariable("id");
 
-        return serverRequest.bodyToMono(Board.class)
-                .flatMap(board -> ServerResponse.ok()
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(verifyAllPlayersCardsUseCase.verifyAllplayersCards(id,board),Board.class));
-    }
 
 
 

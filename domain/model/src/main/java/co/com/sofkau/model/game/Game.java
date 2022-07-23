@@ -24,8 +24,7 @@ public class Game {
         this.idPlayer="";
     }
 
-    public Game(String id, Board board, Set<Player> players) {
-        this.id = id;
+    public Game(Board board, Set<Player> players) {
         this.board = board;
         this.players = players;
     }
