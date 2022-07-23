@@ -3,6 +3,7 @@ package co.com.sofkau.mongo.game;
 import co.com.sofkau.model.card.Card;
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.game.gateways.GameRepository;
+import co.com.sofkau.model.objectvalues.CardInGame;
 import co.com.sofkau.model.player.Player;
 import co.com.sofkau.mongo.helper.AdapterOperations;
 import org.reactivecommons.utils.ObjectMapper;
@@ -27,12 +28,6 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
         return repository.save(new GameDocument(game.getBoard(),game.getPlayers()))
                 .flatMap(elemet->Mono.just(game));
     }
-
-    @Override
-    public Flux<Card> assingDeck(Set<Card> card) {
-        return null;
-    }
-
     @Override
     public Mono<Player> Winner(String id) {
         return null;
@@ -58,6 +53,15 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
                 save(new GameDocument(game.getId(),game.getBoard(), game.getPlayers(), game.getIdPlayer(),game.getRound()))
                 .map(gameDocument -> new Game(gameDocument.getId(),gameDocument.getBoard(), gameDocument.getPlayers(), gameDocument.getIdPlayer(),gameDocument.getRound()));
     }
+    @Override
+    public Mono<CardInGame> selectCard(CardInGame cardInGame) {
+        return Mono.just(cardInGame);
+    }
+    /*
+    @Override
+    public Mono<Game> betCardPlayer(String gameId, String playerId, Game game) {
+        return null;
+    }*/
 
 
 }

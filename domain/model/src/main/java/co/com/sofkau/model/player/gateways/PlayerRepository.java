@@ -1,5 +1,6 @@
 package co.com.sofkau.model.player.gateways;
 
+import co.com.sofkau.model.objectvalues.CardInGame;
 import co.com.sofkau.model.player.Player;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -12,4 +13,5 @@ public interface PlayerRepository {
     Mono <Void> deleteById(String playerId);
     Mono<Player> assignCardToPlayer(String playerId, Player player);
     Mono<Player> surrenderPlayer(String playerId, Player player);
+
 }
