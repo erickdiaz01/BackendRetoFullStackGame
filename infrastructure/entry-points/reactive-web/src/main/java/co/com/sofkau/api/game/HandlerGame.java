@@ -84,8 +84,6 @@ public class HandlerGame {
         String cardId = serverRequest.pathVariable("cardId");
         String gameId = serverRequest.pathVariable("gameId");
 
-        return serverRequest.bodyToMono(Game.class)
-                .flatMap(player -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-                        .body(selectCardUseCase.selectCard(cardId,playerId,gameId), Game.class));
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(selectCardUseCase.selectCard(cardId,playerId,gameId),Game.class);
     }
 }

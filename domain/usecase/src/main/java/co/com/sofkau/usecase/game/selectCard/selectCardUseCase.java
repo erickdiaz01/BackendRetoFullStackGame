@@ -17,23 +17,12 @@ public class selectCardUseCase {
     private final findGameByIdUseCase findGameByIdUseCase;
     public Mono<CardInGame> selectCard (String cardId , String playerId,String gameId){
           var game=  findGameByIdUseCase.findGameById(gameId).toFuture().join();
-        System.out.println(game);
           var card= game.getPlayers().stream()
                   .filter(player -> player.getPlayerId().equals(playerId))
-                  .flatMap(player -> {
-                      System.out.println(player);
-                     return player.getCards().stream();
-                  })
-                  .filter(cardInGames -> {
-                      System.out.println(cardInGames);
-                     return cardInGames.getCard().getCardId().equals(cardId);
-                  })
+                  .flatMap(player -> player.getCards().stream())
+                  .filter(cardInGames -> cardInGames.getCard().getCardId().equals(cardId))
                   .collect(Collectors.toList()).stream().findFirst().orElseThrow();
-        System.out.println(card);
-                  /*player.getCards().stream()
-                   .filter(cardInGame -> cardInGame.getCard().getCardId().equals(cardId)).reduce((x,y)->{
-                       return y;
-                  }).orElseThrow();*/
+
 
         return gameRepository.selectCard(card);
     }
