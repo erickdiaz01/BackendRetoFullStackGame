@@ -49,5 +49,12 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
         return repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound()))
                 .flatMap(gameDocument -> Mono.just(game));
     }
+
+    @Override
+    public Mono<Game> playerLosed(String gameId, Game game) {
+        game.setId(gameId);
+        return repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound()))
+                .flatMap(gameDocument -> Mono.just(game));
+    }
 }
 

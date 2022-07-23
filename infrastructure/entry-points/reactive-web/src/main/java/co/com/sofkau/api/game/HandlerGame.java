@@ -7,6 +7,7 @@ import co.com.sofkau.usecase.game.creategame.createGameUseCase;
 import co.com.sofkau.usecase.game.dealcards.DealCardsUseCase;
 import co.com.sofkau.usecase.game.findallgame.findAllGameUseCase;
 import co.com.sofkau.usecase.game.findbyid.findGameByIdUseCase;
+import co.com.sofkau.usecase.game.verifyplayerlosed.VerifyPlayerLosedUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -24,6 +25,7 @@ public class HandlerGame {
     private final addPlayersUseCase addPlayersUseCase;
     private final countPlayersUseCase countPlayersUseCase;
     private final DealCardsUseCase dealCardsUseCase;
+    private final VerifyPlayerLosedUseCase verifyPlayerLosedUseCase;
 
 
     public Mono<ServerResponse> createGame(ServerRequest serverRequest){
@@ -60,4 +62,10 @@ public class HandlerGame {
         Game game = findGameByIdUseCase.findGameById(id).toFuture().join();
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(dealCardsUseCase.dealCards(id,game),Game.class);
     }
-}
+    public Mono<ServerResponse> verifyPlayersLosed(ServerRequest serverRequest) {
+        String id = serverRequest.pathVariable("id");
+        Game game = findGameByIdUseCase.findGameById(id).toFuture().join();
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(verifyPlayerLosedUseCase.verifyPlayerLosed(id, game), Game.class);
+
+    }
+    }
