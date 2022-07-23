@@ -13,5 +13,5 @@ public interface BoardRepository {
     Mono<Board> selectWinnerCard(String boardId,Board board);
     Mono<Board> receiveCards(String boardId,Board board);
     Mono<Board>receiveCardsOfLeftPlayer(String boardId,Board board);
-    Mono<Board> showRoundWinner(String boardId,Board board);
+
 }

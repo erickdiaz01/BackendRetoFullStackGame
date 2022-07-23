@@ -9,7 +9,7 @@ import co.com.sofkau.usecase.board.findbyidboard.FindByIdBoardUseCase;
 import co.com.sofkau.usecase.board.ifnotwinnerchangeround.IfNotWinnerChangeRoundUseCase;
 import co.com.sofkau.usecase.board.receivecards.ReceiveCardsUseCase;
 import co.com.sofkau.usecase.board.receivecardsofleftplayer.ReceiveCardsOfLeftPlayerUseCase;
-import co.com.sofkau.usecase.board.selectroundwinner.SelectRoundWinnerUseCase;
+import co.com.sofkau.usecase.game.selectroundwinner.SelectRoundWinnerUseCase;
 import co.com.sofkau.usecase.board.updateboard.UpdateBoardUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -28,7 +28,7 @@ public class HandlerBoard {
 
     private final ChangeStateViewCardsUseCase changeStateViewCardsUseCase;
     private final IfNotWinnerChangeRoundUseCase ifNotWinnerChangeRoundUseCase;
-    private final SelectRoundWinnerUseCase selectRoundWinnerUseCase;
+
     private final ReceiveCardsUseCase receiveCardsUseCase;
     private final ReceiveCardsOfLeftPlayerUseCase receiveCardsOfLeftPlayerUseCase;
 
@@ -78,15 +78,7 @@ public class HandlerBoard {
                                 .ifNotWinnerChangeRound(id,board),Board.class));
     }
 
-    public  Mono<ServerResponse> selectRoundWinner(ServerRequest serverRequest){
-        String id = serverRequest.pathVariable("id");
 
-        return serverRequest.bodyToMono(Board.class)
-                .flatMap(board -> ServerResponse.ok()
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(selectRoundWinnerUseCase
-                                .selectRoundWinner(id,board),Board.class));
-    }
 
     public  Mono<ServerResponse> receiveCards(ServerRequest serverRequest){
         String id = serverRequest.pathVariable("id");
