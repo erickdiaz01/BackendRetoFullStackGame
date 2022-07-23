@@ -1,17 +1,17 @@
 package co.com.sofkau.api.game;
 
 import co.com.sofkau.model.game.Game;
-import co.com.sofkau.model.player.Player;
 import co.com.sofkau.usecase.game.addPlayers.addPlayersUseCase;
 import co.com.sofkau.usecase.game.betCard.betCardUseCase;
 import co.com.sofkau.usecase.game.countplayers.countPlayersUseCase;
 import co.com.sofkau.usecase.game.creategame.createGameUseCase;
 import co.com.sofkau.usecase.game.dealcards.DealCardsUseCase;
 import co.com.sofkau.usecase.game.findallgame.findAllGameUseCase;
-import co.com.sofkau.usecase.game.findbyid.findGameByIdUseCase;
+import co.com.sofkau.usecase.game.findbyid.FindGameByIdUseCase;
 import co.com.sofkau.usecase.game.verifyplayerlosed.VerifyPlayerLosedUseCase;
 import co.com.sofkau.usecase.game.selectCard.selectCardUseCase;
 import co.com.sofkau.usecase.game.surrenderPlayer.SurrenderPlayerUseCase;
+import co.com.sofkau.usecase.game.winnergame.WinnerGameUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -20,14 +20,12 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import javax.sql.rowset.Joinable;
-
 @Component
 @RequiredArgsConstructor
 public class HandlerGame {
     private final createGameUseCase  createGameUseCase;
     private final findAllGameUseCase findallgameUseCase;
-    private final findGameByIdUseCase findGameByIdUseCase;
+    private final FindGameByIdUseCase findGameByIdUseCase;
     private final addPlayersUseCase addPlayersUseCase;
     private final countPlayersUseCase countPlayersUseCase;
     private final DealCardsUseCase dealCardsUseCase;
@@ -36,6 +34,7 @@ public class HandlerGame {
     private final SurrenderPlayerUseCase surrenderPlayerUseCase;
     private  final selectCardUseCase selectCardUseCase;
     private final betCardUseCase betCardUseCase;
+    private final WinnerGameUseCase winnerGameUseCase;
 
 
     public Mono<ServerResponse> createGame(ServerRequest serverRequest){
@@ -102,5 +101,9 @@ public class HandlerGame {
         String cardId = serverRequest.pathVariable("cardId");
         String gameId = serverRequest.pathVariable("gameId");
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(betCardUseCase.betCardPlayer(gameId,playerId,cardId),Game.class);
+    }
+    public Mono<ServerResponse> winnerGame(ServerRequest serverRequest){
+        String gameId = serverRequest.pathVariable("id");
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(winnerGameUseCase.winnerGame(gameId),Game.class);
     }
 }

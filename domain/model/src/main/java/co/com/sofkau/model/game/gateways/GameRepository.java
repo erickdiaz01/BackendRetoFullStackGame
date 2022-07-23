@@ -14,7 +14,7 @@ public interface GameRepository {
     Flux<Game> findAll();
     Mono<Game> findById(String gameId);
     Mono<Game> addPlayerGame(String id , Game game);
-    Mono<Player> Winner (String id);
+    Mono<Game> winnerGame (String gameId,Game game);
     Mono<Long> countPlayers(String gameId,Game game);
 
     Mono<Game> dealCards(String gameId,Game game);
@@ -26,4 +26,5 @@ public interface GameRepository {
     Mono<CardInGame> selectCard (CardInGame cardInGame);
 
     Mono<Game> betCardPlayer(String gameId , Game game);
+
 }

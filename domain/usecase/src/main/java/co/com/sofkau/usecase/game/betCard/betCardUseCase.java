@@ -2,18 +2,16 @@ package co.com.sofkau.usecase.game.betCard;
 
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.game.gateways.GameRepository;
-import co.com.sofkau.usecase.game.findbyid.findGameByIdUseCase;
+import co.com.sofkau.usecase.game.findbyid.FindGameByIdUseCase;
 import co.com.sofkau.usecase.game.selectCard.selectCardUseCase;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
-
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class betCardUseCase {
     private final GameRepository gameRepository;
     private final selectCardUseCase selectCardUseCase;
-    private final findGameByIdUseCase findGameByIdUseCase;
+    private final FindGameByIdUseCase findGameByIdUseCase;
 
     public Mono<Game> betCardPlayer(String gameId , String playerId ,String cardId){
         var game = findGameByIdUseCase.findGameById(gameId).toFuture().join();
