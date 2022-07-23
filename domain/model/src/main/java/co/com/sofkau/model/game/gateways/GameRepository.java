@@ -20,5 +20,5 @@ public interface GameRepository {
 
     Mono<Game> dealCards(String gameId,Game game);
 
-
+    Mono<Game> surrenderPlayer(String playerId, Game game, String gameId);
 }

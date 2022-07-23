@@ -70,4 +70,6 @@ public class HandlerPlayer {
                 .flatMap(player -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                         .body(assignCardToPlayerUseCase.assignCardToPlayer(playerId,player), Player.class));
     }
+
+
 }

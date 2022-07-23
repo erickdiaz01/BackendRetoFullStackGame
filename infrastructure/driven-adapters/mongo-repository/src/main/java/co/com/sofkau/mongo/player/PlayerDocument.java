@@ -2,6 +2,7 @@ package co.com.sofkau.mongo.player;
 
 
 
+import co.com.sofkau.model.board.CardInGame;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,7 @@ public class PlayerDocument {
     private String email;
     private Integer globalScore;
     private Integer localScore;
-    private Set<String> cards;
+    private Set<CardInGame> cards;
 
     public PlayerDocument(String playerId,String email) {
         this.playerId = playerId;
