@@ -18,7 +18,14 @@ implements CardRepository
 
     @Override
     public Mono<Card> update(String idCard, Card card) {
-        //TODO
+        //TODO ACTUALIZAR DATOS
+
+        /*card.setCardId(idCard);
+        return repository.save(new CardDocument(
+                card.getCardId(),card.getNameOfCard(),card.getFeatures(),card.getUrlImage(),card.getPower())
+
+                heroes.setId(id);*/
+
         return null;
     }
 }
