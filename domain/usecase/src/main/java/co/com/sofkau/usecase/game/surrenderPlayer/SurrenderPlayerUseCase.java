@@ -1,7 +1,7 @@
 package co.com.sofkau.usecase.game.surrenderPlayer;
 
 
-import co.com.sofkau.model.board.CardInGame;
+import co.com.sofkau.model.objectvalues.CardInGame;
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.game.gateways.GameRepository;
 

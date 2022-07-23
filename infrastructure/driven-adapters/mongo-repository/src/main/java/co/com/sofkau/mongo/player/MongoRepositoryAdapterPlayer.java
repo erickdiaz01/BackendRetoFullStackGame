@@ -1,7 +1,7 @@
 package co.com.sofkau.mongo.player;
 
 
-import co.com.sofkau.model.player.CardInGame;
+import co.com.sofkau.model.objectvalues.CardInGame;
 import co.com.sofkau.model.player.Player;
 
 import co.com.sofkau.model.player.gateways.PlayerRepository;
@@ -36,10 +36,7 @@ public class MongoRepositoryAdapterPlayer extends AdapterOperations<Player, Play
                 .flatMap(p -> Mono.just(player));
     }
 
-    @Override
-    public Mono<CardInGame> selectCard(CardInGame cardInGame) {
-        return null;
-    }
+
 
 
 }

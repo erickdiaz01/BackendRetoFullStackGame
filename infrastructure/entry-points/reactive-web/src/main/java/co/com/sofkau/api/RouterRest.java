@@ -31,6 +31,7 @@ public RouterFunction<ServerResponse> routerFunction(HandlerCard handlerCard, Ha
             .andRoute(POST("/api/game/dealcards/{id}"),handlerGame::dealCards)
             .andRoute(GET("/api/game/countplayers/{id}"),handlerGame::countPlayers)
             .andRoute(POST("/api/game/{gameId}/player/{playerId}"),handlerGame::surrenderPlayer)
+            .andRoute(GET("/api/game/{gameId}/selectcard/{playerId}/card/{cardId}"),handlerGame::selectCard)
             .andRoute(POST("/api/player/createplayer"), handlerPlayer::createPlayer)
             .andRoute(GET("/api/player/listplayer/{id}"),handlerPlayer::findPlayerById)
             .andRoute(PUT("/api/player/updateplayer/{id}"),handlerPlayer::updatePlayer)

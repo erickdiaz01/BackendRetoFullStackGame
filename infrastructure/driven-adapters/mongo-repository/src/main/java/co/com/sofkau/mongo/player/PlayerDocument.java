@@ -2,7 +2,7 @@ package co.com.sofkau.mongo.player;
 
 
 
-import co.com.sofkau.model.board.CardInGame;
+import co.com.sofkau.model.objectvalues.CardInGame;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
