@@ -1,12 +1,15 @@
 package co.com.sofkau.api.game;
 
 import co.com.sofkau.model.game.Game;
+import co.com.sofkau.model.player.Player;
 import co.com.sofkau.usecase.game.addPlayers.addPlayersUseCase;
 import co.com.sofkau.usecase.game.countplayers.countPlayersUseCase;
 import co.com.sofkau.usecase.game.creategame.createGameUseCase;
 import co.com.sofkau.usecase.game.dealcards.DealCardsUseCase;
 import co.com.sofkau.usecase.game.findallgame.findAllGameUseCase;
 import co.com.sofkau.usecase.game.findbyid.findGameByIdUseCase;
+import co.com.sofkau.usecase.game.verifyplayerlosed.VerifyPlayerLosedUseCase;
+import co.com.sofkau.usecase.game.selectCard.selectCardUseCase;
 import co.com.sofkau.usecase.game.surrenderPlayer.SurrenderPlayerUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -27,9 +30,10 @@ public class HandlerGame {
     private final addPlayersUseCase addPlayersUseCase;
     private final countPlayersUseCase countPlayersUseCase;
     private final DealCardsUseCase dealCardsUseCase;
+    private final VerifyPlayerLosedUseCase verifyPlayerLosedUseCase;
 
     private final SurrenderPlayerUseCase surrenderPlayerUseCase;
-
+    private  final selectCardUseCase selectCardUseCase;
 
 
     public Mono<ServerResponse> createGame(ServerRequest serverRequest){
@@ -76,5 +80,19 @@ public class HandlerGame {
         String id = serverRequest.pathVariable("id");
         Game game = findGameByIdUseCase.findGameById(id).toFuture().join();
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(dealCardsUseCase.dealCards(id,game),Game.class);
+    }
+    public Mono<ServerResponse> verifyPlayersLosed(ServerRequest serverRequest) {
+        String id = serverRequest.pathVariable("id");
+        Game game = findGameByIdUseCase.findGameById(id).toFuture().join();
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(verifyPlayerLosedUseCase.verifyPlayerLosed(id, game), Game.class);
+
+    }
+    
+    public Mono<ServerResponse> selectCard(ServerRequest serverRequest){
+        String playerId = serverRequest.pathVariable("playerId");
+        String cardId = serverRequest.pathVariable("cardId");
+        String gameId = serverRequest.pathVariable("gameId");
+
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(selectCardUseCase.selectCard(cardId,playerId,gameId),Game.class);
     }
 }

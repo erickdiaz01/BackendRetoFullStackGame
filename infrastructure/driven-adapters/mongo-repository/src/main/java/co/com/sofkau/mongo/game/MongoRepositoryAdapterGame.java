@@ -3,6 +3,7 @@ package co.com.sofkau.mongo.game;
 import co.com.sofkau.model.card.Card;
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.game.gateways.GameRepository;
+import co.com.sofkau.model.objectvalues.CardInGame;
 import co.com.sofkau.model.player.Player;
 import co.com.sofkau.mongo.helper.AdapterOperations;
 import org.reactivecommons.utils.ObjectMapper;
@@ -45,6 +46,11 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
     }
 
     @Override
+    public Mono<Game> playerLosed(String gameId, Game game) {
+        game.setId(gameId);
+        return repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound()))
+                .flatMap(gameDocument -> Mono.just(game));
+    }
     public Mono<Game> surrenderPlayer(String playerId, Game game, String gameId) {
 
         game.setId(gameId);
@@ -52,7 +58,15 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
                 save(new GameDocument(game.getId(),game.getBoard(), game.getPlayers(), game.getIdPlayer(),game.getRound()))
                 .map(gameDocument -> new Game(gameDocument.getId(),gameDocument.getBoard(), gameDocument.getPlayers(), gameDocument.getIdPlayer(),gameDocument.getRound()));
     }
+    @Override
+    public Mono<CardInGame> selectCard(CardInGame cardInGame) {
+        return Mono.just(cardInGame);
+    }
 
+    @Override
+    public Mono<Game> changeRound(String gameId) {
+        return null;
+    }
     /*
     @Override
     public Mono<Game> betCardPlayer(String gameId, String playerId, Game game) {

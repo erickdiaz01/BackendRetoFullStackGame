@@ -18,14 +18,11 @@ implements CardRepository
 
     @Override
     public Mono<Card> update(String idCard, Card card) {
-        //TODO ACTUALIZAR DATOS
-
-        /*card.setCardId(idCard);
+        card.setCardId(idCard);
         return repository.save(new CardDocument(
-                card.getCardId(),card.getNameOfCard(),card.getFeatures(),card.getUrlImage(),card.getPower())
+                card.getCardId(),card.getNameOfCard(),card.getFeatures(),card.getUrlImage(),card.getPower()))
+                .flatMap(cardElemen->Mono.just(card));
 
-                heroes.setId(id);*/
 
-        return null;
     }
 }

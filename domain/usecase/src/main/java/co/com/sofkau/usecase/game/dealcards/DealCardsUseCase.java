@@ -1,14 +1,12 @@
 package co.com.sofkau.usecase.game.dealcards;
 
-import co.com.sofkau.model.board.CardInGame;
-import co.com.sofkau.model.board.gateways.BoardRepository;
+import co.com.sofkau.model.objectvalues.CardInGame;
 import co.com.sofkau.model.card.Card;
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.game.gateways.GameRepository;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 

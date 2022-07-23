@@ -1,4 +1,4 @@
-package co.com.sofkau.model.board;
+package co.com.sofkau.model.objectvalues;
 
 import co.com.sofkau.model.card.Card;
 import lombok.AllArgsConstructor;

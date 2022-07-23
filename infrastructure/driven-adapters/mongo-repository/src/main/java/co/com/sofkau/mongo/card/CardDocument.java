@@ -17,10 +17,17 @@ import java.util.Set;
 public class CardDocument {
     @Id
     private String cardId;
-
     private String nameOfCard;
     private String features;
     private String urlImage;
     private Integer power;
-    private Set<String> cards;
+    //private Set<String> cards;
+
+   /* public CardDocument(String cardId, String nameOfCard, String features, String urlImage, Integer power) {
+        this.cardId = cardId;
+        this.nameOfCard = nameOfCard;
+        this.features = features;
+        this.urlImage = urlImage;
+        this.power = power;
+    }*/
 }
