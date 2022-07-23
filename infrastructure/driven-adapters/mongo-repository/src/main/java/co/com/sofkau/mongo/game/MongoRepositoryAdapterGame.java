@@ -1,17 +1,13 @@
 package co.com.sofkau.mongo.game;
 
-import co.com.sofkau.model.card.Card;
+import co.com.sofkau.model.board.Board;
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.game.gateways.GameRepository;
 import co.com.sofkau.model.objectvalues.CardInGame;
-import co.com.sofkau.model.player.Player;
 import co.com.sofkau.mongo.helper.AdapterOperations;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.stereotype.Repository;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.Set;
 
 @Repository
 public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocument, String, MongoDbRepositoryGame>
@@ -73,6 +69,14 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
      return repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound()))
                 .flatMap(gameDocument -> Mono.just(game));
     }
+
+    @Override
+    public Mono<Game> selectRoudnWinner(String gameId, Game game) {
+        game.setId(gameId);
+        return repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound()))
+                .flatMap(gameDocument -> Mono.just(game));
+    }
+
 
    /*@Override
     public Mono<Game> betCardPlayer(String gameId, String playerId, Game game) {
