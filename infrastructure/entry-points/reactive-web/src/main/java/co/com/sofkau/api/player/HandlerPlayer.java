@@ -6,7 +6,6 @@ import co.com.sofkau.usecase.card.player.findallplayers.FindAllPlayersUseCase;
 import co.com.sofkau.usecase.card.player.findplayerbyid.FindPlayerByIdUseCase;
 import co.com.sofkau.usecase.card.player.updateplayer.UpdatePlayerUseCase;
 import co.com.sofkau.usecase.player.assigncardtoplayer.AssignCardToPlayerUseCase;
-import co.com.sofkau.usecase.game.selectCard.selectCardUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;

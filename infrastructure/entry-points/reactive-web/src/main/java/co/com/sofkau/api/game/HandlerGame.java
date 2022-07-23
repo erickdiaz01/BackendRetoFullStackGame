@@ -110,11 +110,6 @@ public class HandlerGame {
     }
     public  Mono<ServerResponse> selectRoundWinner(ServerRequest serverRequest){
         String id = serverRequest.pathVariable("id");
-        Game game = findGameByIdUseCase.findGameById(id).toFuture().join();
-        return serverRequest.bodyToMono(Game.class)
-                .flatMap(board -> ServerResponse.ok()
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(selectRoundWinnerUseCase
-                                .selectRoundWinner(id,game),Game.class));
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(selectRoundWinnerUseCase.selectRoundWinner(id),Game.class);
     }
 }
