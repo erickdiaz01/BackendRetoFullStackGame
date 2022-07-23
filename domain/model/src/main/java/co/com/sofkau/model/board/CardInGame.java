@@ -12,4 +12,8 @@ public class CardInGame {
     private Card card;
     private boolean viewed;
 
+    public CardInGame(Card card) {
+        this.card = card;
+        this.viewed = true;
+    }
 }
