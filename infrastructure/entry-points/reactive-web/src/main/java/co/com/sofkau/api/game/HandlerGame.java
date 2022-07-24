@@ -4,6 +4,7 @@ import co.com.sofkau.model.board.Board;
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.usecase.game.addPlayers.addPlayersUseCase;
 import co.com.sofkau.usecase.game.betCard.betCardUseCase;
+import co.com.sofkau.usecase.game.changeRound.ChangueRoundUseCase;
 import co.com.sofkau.usecase.game.countplayers.countPlayersUseCase;
 import co.com.sofkau.usecase.game.creategame.createGameUseCase;
 import co.com.sofkau.usecase.game.dealcards.DealCardsUseCase;
@@ -32,12 +33,12 @@ public class HandlerGame {
     private final countPlayersUseCase countPlayersUseCase;
     private final DealCardsUseCase dealCardsUseCase;
     private final VerifyPlayerLosedUseCase verifyPlayerLosedUseCase;
-
     private final SurrenderPlayerUseCase surrenderPlayerUseCase;
     private  final selectCardUseCase selectCardUseCase;
     private final betCardUseCase betCardUseCase;
     private final WinnerGameUseCase winnerGameUseCase;
     private final SelectRoundWinnerUseCase selectRoundWinnerUseCase;
+    private final ChangueRoundUseCase changueRoundUseCase;
 
     public Mono<ServerResponse> createGame(ServerRequest serverRequest){
         return serverRequest.bodyToMono(Game.class).flatMap(game ->

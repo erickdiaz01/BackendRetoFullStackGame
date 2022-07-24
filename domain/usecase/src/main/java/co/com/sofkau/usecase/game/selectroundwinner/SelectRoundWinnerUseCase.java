@@ -3,6 +3,7 @@ package co.com.sofkau.usecase.game.selectroundwinner;
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.game.gateways.GameRepository;
 import co.com.sofkau.usecase.card.player.findplayerbyid.FindPlayerByIdUseCase;
+import co.com.sofkau.usecase.game.changeRound.ChangueRoundUseCase;
 import co.com.sofkau.usecase.game.findbyid.FindGameByIdUseCase;
 import co.com.sofkau.usecase.player.assigncardtoplayer.AssignCardToPlayerUseCase;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ public class SelectRoundWinnerUseCase {
  private final GameRepository gameRepository;
     private final AssignCardToPlayerUseCase assignCardToPlayerUseCase;
     private final FindGameByIdUseCase findGameByIdUseCase;
+    private final ChangueRoundUseCase changueRoundUseCase;
 
 
     public Mono<Game> selectRoundWinner(String gameId){
@@ -37,7 +39,7 @@ Game game = findGameByIdUseCase.findGameById(gameId).toFuture().join();
         winnerPlayer.getCards().addAll(game.getBoard().getCardsInGame().values());
         assignCardToPlayerUseCase.assignCardToPlayer(winnerPlayer.getPlayerId(),winnerPlayer);
         game.getBoard().getCardsInGame().clear();
-        // TODO:  LLAMAR AL CASO DE USO DE CAMBIAR RONDA
+        changueRoundUseCase.changeRoundGame(gameId);
         return gameRepository.selectRoudnWinner(gameId,game);
     }
 }

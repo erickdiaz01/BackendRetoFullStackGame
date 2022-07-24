@@ -12,7 +12,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Set;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Document(collection = "Game")
 public class GameDocument {
@@ -33,5 +32,13 @@ public class GameDocument {
         this.board = board;
         this.players = players;
         this.idPlayer="";
+    }
+
+    public GameDocument(String id, Board board, Set<Player> players, String idPlayer, Round round) {
+        this.id = id;
+        this.board = board;
+        this.players = players;
+        this.idPlayer = idPlayer;
+        this.round = round;
     }
 }

@@ -10,13 +10,13 @@ import reactor.core.publisher.Mono;
 public class ChangueRoundUseCase {
     private final GameRepository gameRepository;
     private final FindGameByIdUseCase findgameByIdUseCase;
-    public Mono<Game> changeRound(String gameId){
-      return findgameByIdUseCase.findGameById(gameId).map(game -> {
-          Integer get= (game.getRound().getNumber()+1);
-          game.getRound().setNumber(get);
-          System.out.println(get);
-          return game;
-      });
+    public Mono<Game> changeRoundGame(String gameId){
+           var Game= findgameByIdUseCase.findGameById(gameId).map(games -> {
+            games.getRound().setNumber((games.getRound().getNumber()+1));
+               System.out.println(games.toString());
+            return games;
+        }).toFuture().join();
+      return gameRepository.changeRound(gameId,Game);
     }
 
 }
