@@ -7,6 +7,8 @@ import co.com.sofkau.usecase.game.selectCard.selectCardUseCase;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
+import java.util.HashMap;
+
 @RequiredArgsConstructor
 public class betCardUseCase {
     private final GameRepository gameRepository;
@@ -17,6 +19,9 @@ public class betCardUseCase {
         var game = findGameByIdUseCase.findGameById(gameId).toFuture().join();
         var card = selectCardUseCase.selectCard(cardId,playerId,gameId).toFuture().join();
         card.setViewed(!card.isViewed());
+        if(game.getBoard().getCardsInGame()==null){
+            game.getBoard().setCardsInGame(new HashMap<>());
+        }
         game.getBoard().getCardsInGame().put(playerId,card);
      var playerOne=   game.getPlayers().stream().filter(player -> player.getPlayerId().equals(playerId))
              .reduce((player, playerTwo) -> playerTwo).orElseThrow();

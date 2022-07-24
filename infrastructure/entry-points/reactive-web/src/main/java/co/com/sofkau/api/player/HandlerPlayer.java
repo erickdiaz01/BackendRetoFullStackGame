@@ -5,6 +5,7 @@ import co.com.sofkau.usecase.card.player.deleteplayer.DeletePlayerUseCase;
 import co.com.sofkau.usecase.card.player.findallplayers.FindAllPlayersUseCase;
 import co.com.sofkau.usecase.card.player.findplayerbyid.FindPlayerByIdUseCase;
 import co.com.sofkau.usecase.card.player.updateplayer.UpdatePlayerUseCase;
+import co.com.sofkau.usecase.player.addglobalscore.AddGlobalScoreUseCase;
 import co.com.sofkau.usecase.player.assigncardtoplayer.AssignCardToPlayerUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -26,7 +27,7 @@ public class HandlerPlayer {
 
     private final AssignCardToPlayerUseCase assignCardToPlayerUseCase;
 
-
+private final AddGlobalScoreUseCase addGlobalScoreUseCase;
 
 
     public Mono<ServerResponse> updatePlayer(ServerRequest serverRequest) {
@@ -72,6 +73,10 @@ public class HandlerPlayer {
                         .body(assignCardToPlayerUseCase.assignCardToPlayer(playerId,player), Player.class));
     }
 
-
+    public Mono<ServerResponse> addGlobalScore(ServerRequest serverRequest) {
+        String playerId = serverRequest.pathVariable("id");
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON).body(addGlobalScoreUseCase.addGlobalScore(playerId), Player.class);
+    }
 
 }

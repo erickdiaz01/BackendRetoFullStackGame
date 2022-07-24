@@ -23,13 +23,14 @@ public class GameDocument {
     private String idPlayer;
     private Round round;
 
-    public GameDocument(Board board) {
+    public GameDocument(String id, Board board) {
+        this.id=id;
         this.board = board;
         this.idPlayer="";
     }
 
-    public GameDocument( Board board, Set<Player> players) {
-
+    public GameDocument(String id, Board board, Set<Player> players) {
+        this.id=id;
         this.board = board;
         this.players = players;
         this.idPlayer="";
