@@ -28,6 +28,7 @@ public RouterFunction<ServerResponse> routerFunction(HandlerCard handlerCard, Ha
             .andRoute(GET("/api/game/listgame"),handlerGame::listGame)
             .andRoute(POST("/api/game/createGame"),handlerGame::createGame)
             .andRoute(PUT("/api/game/{id}"),handlerGame::addPlayersGame)
+            .andRoute(GET("/api/game/listgame/{id}"),handlerGame::findGameById)
             .andRoute(POST("/api/game/dealcards/{id}"),handlerGame::dealCards)
             .andRoute(POST("/api/game/verifyplayerslosed/{id}"),handlerGame::verifyPlayersLosed)
             .andRoute(GET("/api/game/countplayers/{id}"),handlerGame::countPlayers)
@@ -40,6 +41,7 @@ public RouterFunction<ServerResponse> routerFunction(HandlerCard handlerCard, Ha
             .andRoute(GET("/api/player/listplayer/{id}"),handlerPlayer::findPlayerById)
             .andRoute(PUT("/api/player/updateplayer/{id}"),handlerPlayer::updatePlayer)
             .andRoute(DELETE("api/player/deleteplayer/{id}"),handlerPlayer::deletePlayerById)
-            .andRoute(POST("api/player/assigncards/{id}"),handlerPlayer::assignCardToPlayer);
+            .andRoute(POST("api/player/assigncards/{id}"),handlerPlayer::assignCardToPlayer)
+            .andRoute(POST("/api/player/addglobalscore/{id}"),handlerPlayer::addGlobalScore);
     }
 }

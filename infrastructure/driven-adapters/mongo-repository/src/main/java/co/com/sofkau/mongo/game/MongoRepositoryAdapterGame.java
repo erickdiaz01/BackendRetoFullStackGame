@@ -21,14 +21,14 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
     @Override
     public Mono<Game> addPlayerGame(String gameId, Game game) {
         game.setId(gameId);
-        return repository.save(new GameDocument(game.getBoard(),game.getPlayers()))
+        return repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound()))
                 .flatMap(elemet->Mono.just(game));
     }
 
     @Override
     public Mono<Game> winnerGame(String gameId, Game game) {
         game.setId(gameId);
-        return repository.save(new GameDocument(game.getBoard(),game.getPlayers()))
+        return repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound()))
                 .flatMap(elemet->Mono.just(game));
     }
 

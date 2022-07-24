@@ -19,7 +19,6 @@ public class Board {
 
     public Board(String boardId, Map<String, CardInGame> cardsInGame, Set<Card> principalMallet) {
         this.boardId = boardId;
-
         this.cardsInGame = cardsInGame;
         this.principalMallet = principalMallet;
     }
