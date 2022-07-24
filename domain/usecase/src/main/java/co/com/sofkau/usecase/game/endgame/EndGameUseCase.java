@@ -14,13 +14,7 @@ public class EndGameUseCase {
     public Mono<Game> endGame(String gameId, Game game){
 
 
-        return gameRepository.findById(gameId)
-                .map(game->{
-                    var winnerPlayerId = game.getPlayers().stream()
-                            .reduce((acumulator,player)->{
-                                if(game.get)
-                            })
-                })
+        return gameRepository.findById(gameId);
 
     }
 }

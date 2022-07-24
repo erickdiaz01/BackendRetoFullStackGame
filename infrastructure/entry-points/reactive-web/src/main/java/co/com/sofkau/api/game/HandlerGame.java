@@ -9,6 +9,7 @@ import co.com.sofkau.usecase.game.dealcards.DealCardsUseCase;
 import co.com.sofkau.usecase.game.findallgame.findAllGameUseCase;
 import co.com.sofkau.usecase.game.findbyid.findGameByIdUseCase;
 import co.com.sofkau.usecase.game.selectCard.selectCardUseCase;
+import co.com.sofkau.usecase.game.startgame.StartGameUseCase;
 import co.com.sofkau.usecase.game.surrenderPlayer.SurrenderPlayerUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -32,6 +33,8 @@ public class HandlerGame {
 
     private final SurrenderPlayerUseCase surrenderPlayerUseCase;
     private  final selectCardUseCase selectCardUseCase;
+
+    private final StartGameUseCase startGameUseCase;
 
 
     public Mono<ServerResponse> createGame(ServerRequest serverRequest){
@@ -85,5 +88,13 @@ public class HandlerGame {
         String gameId = serverRequest.pathVariable("gameId");
 
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(selectCardUseCase.selectCard(cardId,playerId,gameId),Game.class);
+    }
+
+    public Mono <ServerResponse> startgame(ServerRequest serverRequest){
+        var gameId = serverRequest.pathVariable("id");
+        return serverRequest.bodyToMono(Game.class)
+                .flatMap(element -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(startGameUseCase.startGame(gameId,element.getPlayers(),element.getBoard()),Game.class));
     }
 }
