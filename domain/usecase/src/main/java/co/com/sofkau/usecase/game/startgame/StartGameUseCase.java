@@ -7,7 +7,7 @@ import co.com.sofkau.model.player.Player;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
+
 import java.util.Set;
 
 @RequiredArgsConstructor
@@ -20,9 +20,7 @@ public class StartGameUseCase {
                 .map(game ->{
                     game.setPlayers(players);
                     game.setBoard(board);
-
                     return game;
-
                 })
                 .flatMap(gameRepository::save);
     }

@@ -1,7 +1,7 @@
 package co.com.sofkau.api.game;
 
+import co.com.sofkau.model.game.BoardPlayers;
 import co.com.sofkau.model.game.Game;
-import co.com.sofkau.model.player.Player;
 import co.com.sofkau.usecase.game.addPlayers.addPlayersUseCase;
 import co.com.sofkau.usecase.game.countplayers.countPlayersUseCase;
 import co.com.sofkau.usecase.game.creategame.createGameUseCase;
@@ -18,8 +18,6 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import javax.sql.rowset.Joinable;
 
 @Component
 @RequiredArgsConstructor
@@ -90,11 +88,13 @@ public class HandlerGame {
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(selectCardUseCase.selectCard(cardId,playerId,gameId),Game.class);
     }
 
-    public Mono <ServerResponse> startgame(ServerRequest serverRequest){
+    public Mono <ServerResponse> startGame(ServerRequest serverRequest){
         var gameId = serverRequest.pathVariable("id");
-        return serverRequest.bodyToMono(Game.class)
+        return serverRequest.bodyToMono(BoardPlayers.class)
                 .flatMap(element -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(startGameUseCase.startGame(gameId,element.getPlayers(),element.getBoard()),Game.class));
+                        .body(startGameUseCase.startGame(gameId,element.getPlayersInGame(),element.getBoard()),Game.class));
     }
+
+
 }

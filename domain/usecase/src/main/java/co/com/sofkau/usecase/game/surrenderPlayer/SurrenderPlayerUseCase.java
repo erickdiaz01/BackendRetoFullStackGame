@@ -22,7 +22,7 @@ public class SurrenderPlayerUseCase {
         game.getPlayers().stream().filter(player -> player.getPlayerId().equals(playerId))
                         .forEach(player->{
                             game.getBoard().getPrincipalMallet().addAll(player.getCards()
-                                    .stream().map(CardInGame::getCard).collect(Collectors.toList()));
+                            .stream().map(CardInGame::getCard).collect(Collectors.toList()));
                             player.getCards().clear();
                         });
 

@@ -12,9 +12,17 @@ public class EndGameUseCase {
 
 
     public Mono<Game> endGame(String gameId, Game game){
-
-
         return gameRepository.findById(gameId);
-
-    }
+//                .map(game1 -> {
+//                    var winnerId = game.getPlayers().stream()
+//                            .reduce((acumulator, player) -> {
+//                               if (game.getBoard().getCardsInGame().size() == 11 - player.getCards().size()){                                    return player;
+//                               } else {
+//                                   return acumulator;
+//                                }
+//                            }).get();
+//                           game.se
+//                })
+//
+//    }
 }
