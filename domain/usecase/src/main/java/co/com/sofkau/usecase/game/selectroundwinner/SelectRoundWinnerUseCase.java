@@ -39,7 +39,7 @@ Game game = findGameByIdUseCase.findGameById(gameId).toFuture().join();
         winnerPlayer.getCards().addAll(game.getBoard().getCardsInGame().values());
         assignCardToPlayerUseCase.assignCardToPlayer(winnerPlayer.getPlayerId(),winnerPlayer);
         game.getBoard().getCardsInGame().clear();
-        changueRoundUseCase.changeRoundGame(gameId);
+        //changueRoundUseCase.changeRoundGame(gameId);
         return gameRepository.selectRoudnWinner(gameId,game);
     }
 }

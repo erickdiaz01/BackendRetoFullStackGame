@@ -113,4 +113,9 @@ public class HandlerGame {
         String id = serverRequest.pathVariable("id");
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(selectRoundWinnerUseCase.selectRoundWinner(id),Game.class);
     }
+
+    public  Mono<ServerResponse> nextRound(ServerRequest serverRequest){
+        String id = serverRequest.pathVariable("id");
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(changueRoundUseCase.changeRoundGame(id),Game.class);
+    }
 }
