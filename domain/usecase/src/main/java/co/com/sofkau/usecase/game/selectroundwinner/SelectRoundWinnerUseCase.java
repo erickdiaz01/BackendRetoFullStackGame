@@ -2,7 +2,7 @@ package co.com.sofkau.usecase.game.selectroundwinner;
 
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.game.gateways.GameRepository;
-import co.com.sofkau.usecase.game.changeRound.ChangueRoundUseCase;
+import co.com.sofkau.usecase.game.changeRound.ChangeRoundUseCase;
 import co.com.sofkau.usecase.game.findbyid.FindGameByIdUseCase;
 import co.com.sofkau.usecase.player.assigncardtoplayer.AssignCardToPlayerUseCase;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ public class SelectRoundWinnerUseCase {
  private final GameRepository gameRepository;
     private final AssignCardToPlayerUseCase assignCardToPlayerUseCase;
     private final FindGameByIdUseCase findGameByIdUseCase;
-    private final ChangueRoundUseCase changueRoundUseCase;
+    private final ChangeRoundUseCase changeRoundUseCase;
 
 
     public Mono<Game> selectRoundWinner(String gameId){
