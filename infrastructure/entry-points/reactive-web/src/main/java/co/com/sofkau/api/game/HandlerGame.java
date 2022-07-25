@@ -1,8 +1,8 @@
 package co.com.sofkau.api.game;
 
 import co.com.sofkau.model.board.Board;
+import co.com.sofkau.model.game.BoardPlayers;
 import co.com.sofkau.model.game.Game;
-import co.com.sofkau.model.player.Player;
 import co.com.sofkau.usecase.game.addPlayers.addPlayersUseCase;
 import co.com.sofkau.usecase.game.betCard.betCardUseCase;
 import co.com.sofkau.usecase.game.changeRound.ChangueRoundUseCase;
@@ -14,6 +14,7 @@ import co.com.sofkau.usecase.game.findbyid.FindGameByIdUseCase;
 import co.com.sofkau.usecase.game.selectroundwinner.SelectRoundWinnerUseCase;
 import co.com.sofkau.usecase.game.verifyplayerlosed.VerifyPlayerLosedUseCase;
 import co.com.sofkau.usecase.game.selectCard.selectCardUseCase;
+import co.com.sofkau.usecase.game.startgame.StartGameUseCase;
 import co.com.sofkau.usecase.game.surrenderPlayer.SurrenderPlayerUseCase;
 import co.com.sofkau.usecase.game.winnergame.WinnerGameUseCase;
 import lombok.RequiredArgsConstructor;
@@ -40,6 +41,9 @@ public class HandlerGame {
     private final WinnerGameUseCase winnerGameUseCase;
     private final SelectRoundWinnerUseCase selectRoundWinnerUseCase;
     private final ChangueRoundUseCase changueRoundUseCase;
+
+    private final StartGameUseCase startGameUseCase;
+
 
     public Mono<ServerResponse> createGame(ServerRequest serverRequest){
         return serverRequest.bodyToMono(Game.class).flatMap(game ->
@@ -119,4 +123,14 @@ public class HandlerGame {
         String id = serverRequest.pathVariable("id");
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(changueRoundUseCase.changeRoundGame(id),Game.class);
     }
+
+    public Mono <ServerResponse> startGame(ServerRequest serverRequest){
+        var gameId = serverRequest.pathVariable("id");
+        return serverRequest.bodyToMono(BoardPlayers.class)
+                .flatMap(element -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(startGameUseCase.startGame(gameId,element.getPlayersInGame(),element.getBoard()),Game.class));
+    }
+
+
 }

@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 
 @Repository
 public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocument, String, MongoDbRepositoryGame>
-        implements GameRepository  {
+        implements GameRepository {
 
     public MongoRepositoryAdapterGame(MongoDbRepositoryGame repository, ObjectMapper mapper) {
         super(repository, mapper, d -> mapper.map(d, Game.class));
@@ -41,7 +41,7 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
     @Override
     public Mono<Game> dealCards(String gameId, Game game) {
         game.setId(gameId);
-        return repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound()))
+        return repository.save(new GameDocument(game.getId(), game.getBoard(), game.getPlayers(), game.getIdPlayer(), game.getRound()))
                 .flatMap(gameDocument -> Mono.just(game));
     }
 
@@ -55,14 +55,25 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
 
         game.setId(gameId);
         return repository.
-                save(new GameDocument(game.getId(),game.getBoard(), game.getPlayers(), game.getIdPlayer(),game.getRound()))
-                .map(gameDocument -> new Game(gameDocument.getId(),gameDocument.getBoard(), gameDocument.getPlayers(), gameDocument.getIdPlayer(),gameDocument.getRound()));
+                save(new GameDocument(game.getId(), game.getBoard(), game.getPlayers(), game.getIdPlayer(), game.getRound()))
+                .map(gameDocument -> new Game(gameDocument.getId(), gameDocument.getBoard(), gameDocument.getPlayers(), gameDocument.getIdPlayer(), gameDocument.getRound()));
     }
+
     @Override
     public Mono<CardInGame> selectCard(CardInGame cardInGame) {
         return Mono.just(cardInGame);
     }
 
+    @Override
+    public Mono<Game> endGame(String gameId, Game game) {
+        return null;
+    }
+
+//    @Override
+//    public Mono<Game> restartGame(String gameId, Game game) {
+//        return null;
+//    }
+    /*
     @Override
     public Mono<Game> changeRound(String gameId, Game game) {
         game.setId(gameId);
@@ -85,8 +96,8 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
                 .flatMap(gameDocument -> Mono.just(game));
     }
 
-
-
+*/
 
 }
+
 

@@ -23,7 +23,10 @@ public interface GameRepository {
     Mono<CardInGame> selectCard (CardInGame cardInGame);
 
 
+
     Mono<Game> changeRound(String gameId , Game game);
+    Mono<Game> endGame(String gameId, Game game);
+
     /*
     Mono<Game> betCardPlayer(String gameId , String playerId , String cardId, Game game);*/
 
