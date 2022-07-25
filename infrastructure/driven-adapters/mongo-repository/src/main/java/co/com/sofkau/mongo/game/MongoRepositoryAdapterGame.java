@@ -69,11 +69,8 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
         return null;
     }
 
-//    @Override
-//    public Mono<Game> restartGame(String gameId, Game game) {
-//        return null;
-//    }
-    /*
+
+
     @Override
     public Mono<Game> changeRound(String gameId, Game game) {
         game.setId(gameId);
@@ -96,7 +93,7 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
                 .flatMap(gameDocument -> Mono.just(game));
     }
 
-*/
+
 
 }
 

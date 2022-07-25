@@ -1,15 +1,16 @@
-package co.com.sofkau.usecase.card.player.createplayer;
+package co.com.sofkau.usecase.player.findallplayers;
 
 
 import co.com.sofkau.model.player.Player;
 import co.com.sofkau.model.player.gateways.PlayerRepository;
 import lombok.RequiredArgsConstructor;
-import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
 
 @RequiredArgsConstructor
-public class CreatePlayerUseCase {
+public class FindAllPlayersUseCase {
     private final PlayerRepository playerRepository;
-    public Mono<Player> createPlayer(Player player) {
-        return playerRepository.save(player);
+
+    public Flux<Player> findAllPlayers(){
+        return playerRepository.findAll();
     }
 }
