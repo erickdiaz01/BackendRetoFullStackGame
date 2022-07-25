@@ -2,7 +2,6 @@ package co.com.sofkau.usecase.game.selectroundwinner;
 
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.game.gateways.GameRepository;
-import co.com.sofkau.usecase.card.player.findplayerbyid.FindPlayerByIdUseCase;
 import co.com.sofkau.usecase.game.changeRound.ChangueRoundUseCase;
 import co.com.sofkau.usecase.game.findbyid.FindGameByIdUseCase;
 import co.com.sofkau.usecase.player.assigncardtoplayer.AssignCardToPlayerUseCase;

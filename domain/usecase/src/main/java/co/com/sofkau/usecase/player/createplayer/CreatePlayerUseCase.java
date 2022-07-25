@@ -1,4 +1,4 @@
-package co.com.sofkau.usecase.card.player.findplayerbyid;
+package co.com.sofkau.usecase.player.createplayer;
 
 
 import co.com.sofkau.model.player.Player;
@@ -7,9 +7,9 @@ import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
-public class FindPlayerByIdUseCase {
+public class CreatePlayerUseCase {
     private final PlayerRepository playerRepository;
-    public Mono<Player> findPlayerById(String playerId){
-        return playerRepository.findById(playerId);
+    public Mono<Player> createPlayer(Player player) {
+        return playerRepository.save(player);
     }
 }

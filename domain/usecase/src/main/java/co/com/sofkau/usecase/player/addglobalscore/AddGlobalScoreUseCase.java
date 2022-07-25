@@ -2,7 +2,7 @@ package co.com.sofkau.usecase.player.addglobalscore;
 
 import co.com.sofkau.model.player.Player;
 import co.com.sofkau.model.player.gateways.PlayerRepository;
-import co.com.sofkau.usecase.card.player.findplayerbyid.FindPlayerByIdUseCase;
+import co.com.sofkau.usecase.player.findplayerbyid.FindPlayerByIdUseCase;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
