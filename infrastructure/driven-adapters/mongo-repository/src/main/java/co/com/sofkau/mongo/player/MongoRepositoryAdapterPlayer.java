@@ -36,7 +36,12 @@ public class MongoRepositoryAdapterPlayer extends AdapterOperations<Player, Play
                 .flatMap(p -> Mono.just(player));
     }
 
-
+    @Override
+    public Mono<Player> addGlobalScore(String playerId, Player player) {
+        player.setPlayerId(playerId);
+        repository.save(new PlayerDocument(player.getPlayerId(), player.getEmail(), player.getGlobalScore(),player.getLocalScore())).toFuture().join();
+         return Mono.just(player);
+    }
 
 
 }

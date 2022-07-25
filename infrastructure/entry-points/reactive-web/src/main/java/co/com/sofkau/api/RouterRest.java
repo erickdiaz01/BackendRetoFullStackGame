@@ -27,16 +27,23 @@ public RouterFunction<ServerResponse> routerFunction(HandlerCard handlerCard, Ha
             .andRoute(POST("/api/board/changeviewcard/{id}"),handlerBoard::changeStateViewCards)
             .andRoute(GET("/api/game/listgame"),handlerGame::listGame)
             .andRoute(POST("/api/game/createGame"),handlerGame::createGame)
-            .andRoute(PUT("/api/game/{id}"),handlerGame::addPlayersGame)
+            .andRoute(POST("/api/game/player/{id}"),handlerGame::addPlayersGame)
+            .andRoute(GET("/api/game/listgame/{id}"),handlerGame::findGameById)
             .andRoute(POST("/api/game/dealcards/{id}"),handlerGame::dealCards)
+            .andRoute(POST("/api/game/verifyplayerslosed/{id}"),handlerGame::verifyPlayersLosed)
             .andRoute(GET("/api/game/countplayers/{id}"),handlerGame::countPlayers)
             .andRoute(POST("/api/game/{gameId}/player/{playerId}"),handlerGame::surrenderPlayer)
             .andRoute(GET("/api/game/{gameId}/selectcard/{playerId}/card/{cardId}"),handlerGame::selectCard)
+            .andRoute(POST("/api/game/{gameId}/betcard/{playerId}/card/{cardId}"),handlerGame::betCardPlayer)
+            .andRoute(POST("/api/game/winnergame/{id}"),handlerGame::winnerGame)
+            .andRoute(POST("/api/game/nextround/{id}"),handlerGame::nextRound)
+            .andRoute(POST("/api/game/selectroundwinner/{id}"),handlerGame::selectRoundWinner)
             .andRoute(POST("/api/game/startgame/{id}"),handlerGame::startGame)
             .andRoute(POST("/api/player/createplayer"), handlerPlayer::createPlayer)
             .andRoute(GET("/api/player/listplayer/{id}"),handlerPlayer::findPlayerById)
             .andRoute(PUT("/api/player/updateplayer/{id}"),handlerPlayer::updatePlayer)
             .andRoute(DELETE("api/player/deleteplayer/{id}"),handlerPlayer::deletePlayerById)
-            .andRoute(POST("api/player/assigncards/{id}"),handlerPlayer::assignCardToPlayer);
+            .andRoute(POST("api/player/assigncards/{id}"),handlerPlayer::assignCardToPlayer)
+            .andRoute(POST("/api/player/addglobalscore/{id}"),handlerPlayer::addGlobalScore);
     }
 }

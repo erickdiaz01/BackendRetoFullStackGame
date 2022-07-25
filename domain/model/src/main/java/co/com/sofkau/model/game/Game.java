@@ -12,7 +12,6 @@ import java.util.Set;
 @Data
 @Builder(toBuilder = true)
 @AllArgsConstructor
-
 public class Game {
     private String id;
     private Board board;
@@ -24,9 +23,9 @@ public class Game {
         this.board = board;
         this.idPlayer="";
     }
+   
 
-    public Game(String id, Board board, Set<Player> players) {
-        this.id = id;
+    public Game(Board board, Set<Player> players) {
         this.board = board;
         this.players = players;
     }

@@ -14,7 +14,6 @@ import java.util.Set;
 
 @Data
 @AllArgsConstructor
-
 @Document(collection = "Game")
 public class GameDocument {
     @Id
@@ -24,21 +23,24 @@ public class GameDocument {
     private String idPlayer;
     private Integer round;
 
-    public GameDocument(Board board) {
+    public GameDocument(String id, Board board) {
+        this.id=id;
         this.board = board;
         this.idPlayer="";
     }
+    public GameDocument(){
+        this.board=new Board();
+        this.idPlayer="";
+        this.players=new HashSet<>();
+        this.round=1;
+    }
 
     public GameDocument(String id, Board board, Set<Player> players) {
-        this.id = id;
+        this.id=id;
         this.board = board;
         this.players = players;
+        this.idPlayer="";
     }
 
-    public GameDocument(){
-        this.board = new Board();
-        this.players = new HashSet<>();
-        this.round = 1;
-        this.idPlayer = "";
-    }
+   
 }

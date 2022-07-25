@@ -24,7 +24,15 @@ public class PlayerDocument {
     private Integer localScore;
     private Set<CardInGame> cards;
 
-    public PlayerDocument(String playerId,String email) {
+    public PlayerDocument(String playerId, String email, Integer globalScore, Integer localScore) {
+        this.playerId = playerId;
+        this.email = email;
+        this.globalScore = globalScore;
+        this.localScore = localScore;
+      this.cards=new HashSet<>();
+    }
+
+    public PlayerDocument(String playerId, String email) {
         this.playerId = playerId;
         this.email= email;
         this.globalScore= 0;

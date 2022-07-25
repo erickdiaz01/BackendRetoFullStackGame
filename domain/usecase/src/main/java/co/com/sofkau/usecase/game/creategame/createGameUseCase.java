@@ -17,7 +17,11 @@ public class createGameUseCase {
     private final CreateBoardUseCase createBoardUseCase;
     private final FindAllCardsUseCase findAllCardsUseCase;
     public Mono<Game> SaveGame(Game game){
-        game.getBoard().setPrincipalMallet(findAllCardsUseCase.findAllCards().collectList().toFuture().join().stream().collect(Collectors.toSet()));
+        game.getBoard().setPrincipalMallet(findAllCardsUseCase
+                .findAllCards()
+                .collectList().toFuture()
+                .join()
+                .stream().collect(Collectors.toSet()));
         game.setBoard(createBoardUseCase.createBoard(game.getBoard()).toFuture().join());
         return gameRepository.save(game);
     }

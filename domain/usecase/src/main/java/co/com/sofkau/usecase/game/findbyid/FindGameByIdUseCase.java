@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
-public class findGameByIdUseCase {
+public class FindGameByIdUseCase {
     private final GameRepository gameRepository;
 
     public Mono<Game> findGameById(String gameId){
