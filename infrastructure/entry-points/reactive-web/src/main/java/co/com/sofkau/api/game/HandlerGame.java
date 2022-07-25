@@ -2,6 +2,7 @@ package co.com.sofkau.api.game;
 
 import co.com.sofkau.model.board.Board;
 import co.com.sofkau.model.game.Game;
+import co.com.sofkau.model.player.Player;
 import co.com.sofkau.usecase.game.addPlayers.addPlayersUseCase;
 import co.com.sofkau.usecase.game.betCard.betCardUseCase;
 import co.com.sofkau.usecase.game.changeRound.ChangueRoundUseCase;
@@ -53,9 +54,9 @@ public class HandlerGame {
 
     public Mono<ServerResponse> addPlayersGame(ServerRequest serverRequest){
         String id = serverRequest.pathVariable("id");
-        return serverRequest.bodyToMono(Game.class).flatMap(game->
+        return serverRequest.bodyToMono(Player.class).flatMap(player->
             ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-                    .body(addPlayersUseCase.savePlayer(id,game),Game.class));
+                    .body(addPlayersUseCase.savePlayer(id,player),Player.class));
     }
 
     public Mono<ServerResponse> findGameById(ServerRequest serverRequest) {

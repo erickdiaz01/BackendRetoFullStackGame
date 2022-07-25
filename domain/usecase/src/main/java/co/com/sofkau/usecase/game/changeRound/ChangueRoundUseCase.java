@@ -12,8 +12,7 @@ public class ChangueRoundUseCase {
     private final FindGameByIdUseCase findgameByIdUseCase;
     public Mono<Game> changeRoundGame(String gameId){
            var Game= findgameByIdUseCase.findGameById(gameId).map(games -> {
-            games.getRound().setNumber((games.getRound().getNumber()+1));
-               System.out.println(games.toString());
+               games.setRound((games.getRound()+1));
             return games;
         }).toFuture().join();
       return gameRepository.changeRound(gameId,Game);

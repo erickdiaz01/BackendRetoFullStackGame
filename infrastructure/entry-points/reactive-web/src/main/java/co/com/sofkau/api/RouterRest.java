@@ -27,7 +27,7 @@ public RouterFunction<ServerResponse> routerFunction(HandlerCard handlerCard, Ha
             .andRoute(POST("/api/board/changeviewcard/{id}"),handlerBoard::changeStateViewCards)
             .andRoute(GET("/api/game/listgame"),handlerGame::listGame)
             .andRoute(POST("/api/game/createGame"),handlerGame::createGame)
-            .andRoute(PUT("/api/game/player/{id}"),handlerGame::addPlayersGame)
+            .andRoute(POST("/api/game/player/{id}"),handlerGame::addPlayersGame)
             .andRoute(GET("/api/game/listgame/{id}"),handlerGame::findGameById)
             .andRoute(POST("/api/game/dealcards/{id}"),handlerGame::dealCards)
             .andRoute(POST("/api/game/verifyplayerslosed/{id}"),handlerGame::verifyPlayersLosed)

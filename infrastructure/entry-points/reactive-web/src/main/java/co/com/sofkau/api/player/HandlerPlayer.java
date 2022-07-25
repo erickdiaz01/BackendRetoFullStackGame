@@ -1,4 +1,5 @@
 package co.com.sofkau.api.player;
+import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.player.Player;
 import co.com.sofkau.usecase.card.player.createplayer.CreatePlayerUseCase;
 import co.com.sofkau.usecase.card.player.deleteplayer.DeletePlayerUseCase;
@@ -63,7 +64,7 @@ private final AddGlobalScoreUseCase addGlobalScoreUseCase;
     public Mono<ServerResponse> createPlayer(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(Player.class)
                 .flatMap(player -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-                        .body(createPlayerUseCase.createPlayer(player), Player.class));
+                        .body(createPlayerUseCase.createPlayer(player), Game.class));
 
     }
     public Mono<ServerResponse> assignCardToPlayer(ServerRequest serverRequest){

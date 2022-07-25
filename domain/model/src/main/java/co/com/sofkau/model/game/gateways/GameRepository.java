@@ -2,6 +2,7 @@ package co.com.sofkau.model.game.gateways;
 
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.objectvalues.CardInGame;
+import co.com.sofkau.model.player.Player;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
