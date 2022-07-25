@@ -20,18 +20,16 @@ public class SelectRoundWinnerUseCase {
 
 
     public Mono<Game> selectRoundWinner(String gameId){
-Game game = findGameByIdUseCase.findGameById(gameId).toFuture().join();
+       Game game = findGameByIdUseCase.findGameById(gameId).toFuture().join();
         var winnerCard= game.getBoard().getCardsInGame().values().stream()
                 .max(Comparator.comparing(o -> o.getCard().getPower())).orElseThrow();
-        System.out.println(winnerCard);
        var winnerRoundId = game.getBoard().getCardsInGame().entrySet()
                .stream()
                .filter(stringCardInGameEntry ->
                        stringCardInGameEntry.getValue()==winnerCard
                ).map(Map.Entry::getKey)
-               .reduce((s, s2) -> s+s2)
+               .reduce((s, s2) -> s2)
                .orElseThrow();
-        System.out.println(winnerRoundId);
        var winnerPlayer = game.getPlayers().stream()
                .filter(player -> player.getPlayerId().equals(winnerRoundId)).collect(Collectors.toList()).get(0);
        winnerPlayer.getCards().addAll(game.getBoard().getCardsInGame().values());

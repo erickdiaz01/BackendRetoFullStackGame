@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @Document(collection = "Game")
 public class GameDocument {
     @Id
@@ -21,12 +21,18 @@ public class GameDocument {
     private Board board;
     private Set<Player> players;
     private String idPlayer;
-    private Round round;
+    private Integer round;
 
     public GameDocument(String id, Board board) {
         this.id=id;
         this.board = board;
         this.idPlayer="";
+    }
+    public GameDocument(){
+        this.board=new Board();
+        this.idPlayer="";
+        this.players=new HashSet<>();
+        this.round=1;
     }
 
     public GameDocument(String id, Board board, Set<Player> players) {
