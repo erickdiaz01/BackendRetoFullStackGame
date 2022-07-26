@@ -9,7 +9,6 @@ import co.com.sofkau.usecase.board.findbyidboard.FindByIdBoardUseCase;
 import co.com.sofkau.usecase.board.ifnotwinnerchangeround.IfNotWinnerChangeRoundUseCase;
 import co.com.sofkau.usecase.board.receivecards.ReceiveCardsUseCase;
 import co.com.sofkau.usecase.board.receivecardsofleftplayer.ReceiveCardsOfLeftPlayerUseCase;
-import co.com.sofkau.usecase.game.selectroundwinner.SelectRoundWinnerUseCase;
 import co.com.sofkau.usecase.board.updateboard.UpdateBoardUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
