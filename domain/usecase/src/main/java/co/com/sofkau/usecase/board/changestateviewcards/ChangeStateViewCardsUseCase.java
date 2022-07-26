@@ -6,6 +6,8 @@ import co.com.sofkau.model.objectvalues.CardInGame;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
+
+
 @RequiredArgsConstructor
 public class ChangeStateViewCardsUseCase {
     private final BoardRepository boardRepository;

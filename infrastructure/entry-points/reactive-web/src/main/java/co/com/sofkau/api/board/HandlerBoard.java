@@ -32,7 +32,13 @@ public class HandlerBoard {
     private final ReceiveCardsUseCase receiveCardsUseCase;
     private final ReceiveCardsOfLeftPlayerUseCase receiveCardsOfLeftPlayerUseCase;
 
-
+    /**
+     * Método para Crear un tablero utilizando un Mono de tipo Server Response, recibe el
+     * @param serverRequest, es decir, se recibe desde el body y se transforma a un flujo
+     * Mono asincrono de tipo Board, luego se usa flatmap para aplanarlo y una arrow function
+     * para recorrer dicho flujo del body llamando al caso de uso del tablero pasnadole el board y.
+     * @return  el resultado de dicha petición
+     */
     public Mono<ServerResponse> createBoard(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(Board.class)
                 .flatMap(board -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
@@ -40,6 +46,15 @@ public class HandlerBoard {
 
     }
 
+    /**
+     * Método para actualizar un tablero utilizando un Mono de tipo Server Response, recibe el
+     * @param serverRequest, para este método se declara una variable "ID" para envarla en el path url
+     * se recibe desde el body y se transforma a un flujo Mono asincrono de tipo Board, luego se usa
+     * flatmap para aplanarlo y una arrow function
+     * para recorrer dicho flujo del body llamando al caso de uso del update del caso de uso tablero,
+     * para este caso se envía como parámetro el id del tablero y el objeto tablero.
+     * @return  el resultado de dicha petición de clase Board
+     */
     public Mono<ServerResponse> updateBoard(ServerRequest serverRequest) {
         String id = serverRequest.pathVariable("id");
 
