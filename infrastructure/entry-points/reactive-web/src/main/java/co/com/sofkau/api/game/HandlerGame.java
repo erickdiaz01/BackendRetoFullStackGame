@@ -92,8 +92,7 @@ public class HandlerGame {
     }
     public Mono<ServerResponse> verifyPlayersLosed(ServerRequest serverRequest) {
         String id = serverRequest.pathVariable("id");
-        Game game = findGameByIdUseCase.findGameById(id).toFuture().join();
-        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(verifyPlayerLosedUseCase.verifyPlayerLosed(id, game), Game.class);
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(verifyPlayerLosedUseCase.verifyPlayerLosed(id), Game.class);
 
     }
     
