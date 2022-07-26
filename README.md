@@ -15,6 +15,7 @@ Se realiza un modelado usando Domain Driven Design que nos facilita la abstracci
 lógica del negocio para luego adaptar el código al juego de las cartas.
 
 por último se realizan algunas pruebas unitarias al código y se documenta el código para mayor entendimiento.
+![image](https://user-images.githubusercontent.com/51167724/180928323-42884f97-f328-4228-8d5c-e15015afb9bb.png)
 
 ## Juego de SuperHeroes
 
