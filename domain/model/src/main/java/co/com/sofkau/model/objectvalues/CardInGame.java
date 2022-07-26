@@ -12,10 +12,12 @@ import java.util.Objects;
 @NoArgsConstructor
 public class CardInGame {
     private Card card;
+    private String playerId;
     private boolean viewed;
 
-    public CardInGame(Card card) {
+    public CardInGame(String playerId,Card card) {
         this.card = card;
+        this.playerId=playerId;
         this.viewed = true;
     }
     @Override

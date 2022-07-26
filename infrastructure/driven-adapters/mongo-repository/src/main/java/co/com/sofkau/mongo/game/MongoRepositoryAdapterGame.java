@@ -65,7 +65,22 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
     }
 
     @Override
+    public Mono<Game> changeRound(String gameId, Game game) {
+        return null;
+    }
+
+    @Override
     public Mono<Game> endGame(String gameId, Game game) {
+        return null;
+    }
+
+    @Override
+    public Mono<Game> betCardPlayer(String gameId, Game game) {
+        return null;
+    }
+
+    @Override
+    public Mono<Game> selectRoudnWinner(String gameId, Game game) {
         return null;
     }
 
