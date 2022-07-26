@@ -42,9 +42,9 @@ public class SelectRoundWinnerUseCase {
                .filter(player -> player.getPlayerId().equals(winnerCard.getPlayerId())).reduce((player, player2) -> player2).orElseThrow();
         game.getBoard().getCardsInGame().forEach(cardInGame -> cardInGame.setPlayerId(winnerCard.getPlayerId()));
         winnerPlayer.getCards().addAll(game.getBoard().getCardsInGame());
-        System.out.println(winnerPlayer);
+
         game.getBoard().getCardsInGame().clear();
-        System.out.println(game.getBoard());
+
         assignCardToPlayerUseCase.assignCardToPlayer(winnerPlayer.getPlayerId(),winnerPlayer);
         verifyPlayerLosedUseCase.verifyPlayerLosed(gameId);
         return gameRepository.selectRoudnWinner(gameId,game);
