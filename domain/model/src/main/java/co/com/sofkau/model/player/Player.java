@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Data
@@ -19,7 +20,20 @@ public class Player {
     private Integer localScore;
     private Set<CardInGame> cards;
 
-    public Player(String playerId,String email) {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return playerId.equals(player.playerId) && email.equals(player.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(playerId, email);
+    }
+
+    public Player(String playerId, String email) {
         this.playerId = playerId;
         this.email= email;
         this.globalScore= 0;

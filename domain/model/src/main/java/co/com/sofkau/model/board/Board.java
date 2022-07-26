@@ -4,20 +4,19 @@ import co.com.sofkau.model.objectvalues.CardInGame;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import reactor.util.function.Tuple2;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Data
 @Builder(toBuilder = true)
 @NoArgsConstructor
 public class Board {
     private String boardId;
-    private Map<String, CardInGame> cardsInGame;
+    private List<CardInGame> cardsInGame;
     private Set<Card> principalMallet;
 
-    public Board(String boardId, Map<String, CardInGame> cardsInGame, Set<Card> principalMallet) {
+    public Board(String boardId, List<CardInGame> cardsInGame, Set<Card> principalMallet) {
         this.boardId = boardId;
         this.cardsInGame = cardsInGame;
         this.principalMallet = principalMallet;
@@ -25,7 +24,7 @@ public class Board {
 
     public Board(String boardId, Set<Card> principalMallet) {
         this.boardId = boardId;
-        this.cardsInGame =new HashMap<>();
+        this.cardsInGame = new ArrayList<>();
         this.principalMallet = principalMallet;
     }
 }

@@ -6,10 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import reactor.util.function.Tuple2;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Data
 @NoArgsConstructor
@@ -18,10 +17,10 @@ public class BoardDocument {
     @Id
     private String boardId;
 
-    private Map<String, CardInGame> cardsInGame;
+    private List<CardInGame> cardsInGame;
     private Set<Card> principalMallet;
 
-    public BoardDocument(String boardId,  Map<String, CardInGame> cardsInGame, Set<Card> principalMallet) {
+    public BoardDocument(String boardId,  List<CardInGame> cardsInGame, Set<Card> principalMallet) {
         this.boardId = boardId;
         this.cardsInGame = cardsInGame;
         this.principalMallet = principalMallet;
@@ -29,7 +28,7 @@ public class BoardDocument {
 
     public BoardDocument(String boardId,  Set<Card> principalMallet) {
         this.boardId = boardId;
-        this.cardsInGame =new HashMap<>();
+        this.cardsInGame =new ArrayList<>();
 
         this.principalMallet = principalMallet;
     }

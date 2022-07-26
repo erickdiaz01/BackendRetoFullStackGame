@@ -1,12 +1,11 @@
 package co.com.sofkau.api.game;
 
-import co.com.sofkau.model.board.Board;
 import co.com.sofkau.model.game.BoardPlayers;
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.player.Player;
 import co.com.sofkau.usecase.game.addPlayers.addPlayersUseCase;
 import co.com.sofkau.usecase.game.betCard.betCardUseCase;
-import co.com.sofkau.usecase.game.changeRound.ChangueRoundUseCase;
+import co.com.sofkau.usecase.game.changeRound.ChangeRoundUseCase;
 import co.com.sofkau.usecase.game.countplayers.countPlayersUseCase;
 import co.com.sofkau.usecase.game.creategame.createGameUseCase;
 import co.com.sofkau.usecase.game.dealcards.DealCardsUseCase;
@@ -41,7 +40,7 @@ public class HandlerGame {
     private final betCardUseCase betCardUseCase;
     private final WinnerGameUseCase winnerGameUseCase;
     private final SelectRoundWinnerUseCase selectRoundWinnerUseCase;
-    private final ChangueRoundUseCase changueRoundUseCase;
+    private final ChangeRoundUseCase changeRoundUseCase;
 
     private final StartGameUseCase startGameUseCase;
 
@@ -122,7 +121,7 @@ public class HandlerGame {
 
     public  Mono<ServerResponse> nextRound(ServerRequest serverRequest){
         String id = serverRequest.pathVariable("id");
-        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(changueRoundUseCase.changeRoundGame(id),Game.class);
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(changeRoundUseCase.changeRoundGame(id),Game.class);
     }
 
     public Mono <ServerResponse> startGame(ServerRequest serverRequest){
