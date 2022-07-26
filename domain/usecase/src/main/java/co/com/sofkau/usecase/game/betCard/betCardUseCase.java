@@ -11,13 +11,29 @@ import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 
+/**
+ * Clase que contiene el metodo para persistir la reparticion de cartas
+ * desde el tablero hacia los jugadores
+ */
 @RequiredArgsConstructor
 public class betCardUseCase {
     private final GameRepository gameRepository;
     private final selectCardUseCase selectCardUseCase;
     private final FindGameByIdUseCase findGameByIdUseCase;
     private final ChangeStateViewCardsUseCase changeStateViewCardsUseCase;
-private  final SelectRoundWinnerUseCase selectRoundWinnerUseCase;
+
+    /**
+     *Metodo que recibe por parametros el id del juego, el id del jugador que apuesta la carta y el
+     * id de la carta que se va a apostar, con el Id del juego se recupera el juego a partir del respositorio de
+     * esta entidad, posteriormente se llama a otro caso de uso de seleccionar la carta a apostar del mazo del
+     * jugador, ya con la carta y el juego, se realiza el tratamiento para que el tablero obtenga la carta
+     * del jugador, y se inyecta al tablero removiendola del mazo del jugador, esta carta se apuesta con la
+     * cara oculta
+     * @param gameId {String}
+     * @param playerId {String}
+     * @param cardId {String}
+     * @return {Mono<Game>}
+     */
     public Mono<Game> betCardPlayer(String gameId , String playerId ,String cardId){
         var game = findGameByIdUseCase.findGameById(gameId).toFuture().join();
         var card = selectCardUseCase.selectCard(cardId,playerId,gameId).toFuture().join();
@@ -31,7 +47,6 @@ private  final SelectRoundWinnerUseCase selectRoundWinnerUseCase;
              .reduce((player, playerTwo) -> playerTwo).orElseThrow();
      playerOne.getCards().remove(card);
      if(game.getBoard().getCardsInGame().size()==game.getPlayers().size()){
-         System.out.println("hola");
          changeStateViewCardsUseCase.changeStateViewOfCards(game.getBoard().getBoardId(),game.getBoard());
      }
         return gameRepository.betCardPlayer(gameId,game);

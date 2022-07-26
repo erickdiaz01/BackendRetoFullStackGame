@@ -64,10 +64,6 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
     }
 
 
-    @Override
-    public Mono<Game> endGame(String gameId, Game game) {
-        return null;
-    }
 
 
 
