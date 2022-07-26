@@ -2,7 +2,7 @@ package co.com.sofkau.usecase.board.changestateviewcards;
 
 import co.com.sofkau.model.board.Board;
 import co.com.sofkau.model.board.gateways.BoardRepository;
-import co.com.sofkau.model.objectvalues.CardInGame;
+import co.com.sofkau.usecase.game.findbyid.FindGameByIdUseCase;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
@@ -11,6 +11,7 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class ChangeStateViewCardsUseCase {
     private final BoardRepository boardRepository;
+    private final FindGameByIdUseCase findGameByIdUseCase;
 
     public Mono<Board> changeStateViewOfCards(String boardId, Board board){
          /*board.getCardsInGame().entrySet()
@@ -19,6 +20,7 @@ public class ChangeStateViewCardsUseCase {
                 board.getCardsInGame()
                         .put(stringCardInGameEntry.getKey(),new CardInGame(stringCardInGameEntry.getValue().getCard(),stringCardInGameEntry.getValue().isViewed()==true?false:true))
                 );*/
+
          board.getCardsInGame().stream().forEach(cardInGame -> cardInGame.setViewed(!cardInGame.isViewed()));
                 /*(s, cardInGame) -> {
 
