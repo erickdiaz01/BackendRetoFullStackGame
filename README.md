@@ -40,6 +40,16 @@ tarjeta que tenga mayor XP.
 *El jugador que se quede sin cartas quedará eliminado.
 *El Ganador es aquel que termine con las cartas en su mazo.
 
+Log In y Registro con Google
+![image](https://user-images.githubusercontent.com/51167724/180927568-a34b7153-b54e-4271-b2ee-91af8d6b7027.png)
+
+Uso de Firebase database para almacenar los usuarios
+![image](https://user-images.githubusercontent.com/51167724/180927635-774a3c1c-4715-4e30-8f49-5ac130360d7b.png)
+
+![image](https://user-images.githubusercontent.com/51167724/180927787-aa622d3a-af8e-451d-82e9-3a9240b40725.png)
+
+
+
 
 ## Usecases
 
