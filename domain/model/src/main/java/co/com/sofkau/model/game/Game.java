@@ -23,16 +23,18 @@ public class Game {
         this.board = board;
         this.idPlayer="";
     }
-    public Game(){
-        this.board=new Board();
-        this.idPlayer="";
-        this.players=new HashSet<>();
-        this.round=1;
-    }
+   
 
     public Game(Board board, Set<Player> players) {
         this.board = board;
         this.players = players;
+    }
+
+    public Game(){
+        this.board = new Board();
+        this.players = new HashSet<>();
+        this.round = 1;
+        this.idPlayer = "";
     }
 
 

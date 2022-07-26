@@ -1,6 +1,5 @@
 package co.com.sofkau.mongo.game;
 
-import co.com.sofkau.model.board.Board;
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.game.gateways.GameRepository;
 import co.com.sofkau.model.objectvalues.CardInGame;
@@ -64,31 +63,14 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
         return Mono.just(cardInGame);
     }
 
-    @Override
-    public Mono<Game> changeRound(String gameId, Game game) {
-        return null;
-    }
 
     @Override
     public Mono<Game> endGame(String gameId, Game game) {
         return null;
     }
 
-    @Override
-    public Mono<Game> betCardPlayer(String gameId, Game game) {
-        return null;
-    }
 
-    @Override
-    public Mono<Game> selectRoudnWinner(String gameId, Game game) {
-        return null;
-    }
 
-//    @Override
-//    public Mono<Game> restartGame(String gameId, Game game) {
-//        return null;
-//    }
-    /*
     @Override
     public Mono<Game> changeRound(String gameId, Game game) {
         game.setId(gameId);
@@ -100,7 +82,7 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
     @Override
     public Mono<Game> betCardPlayer(String gameId, Game game) {
         game.setId(gameId);
-     return repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound()))
+        return repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound()))
                 .flatMap(gameDocument -> Mono.just(game));
     }
 
@@ -111,8 +93,7 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
                 .flatMap(gameDocument -> Mono.just(game));
     }
 
-*/
+
 
 }
-
 

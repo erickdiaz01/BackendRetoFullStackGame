@@ -5,7 +5,7 @@ import co.com.sofkau.model.objectvalues.CardInGame;
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.game.gateways.GameRepository;
 
-import co.com.sofkau.usecase.card.player.findplayerbyid.FindPlayerByIdUseCase;
+import co.com.sofkau.usecase.player.findplayerbyid.FindPlayerByIdUseCase;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 

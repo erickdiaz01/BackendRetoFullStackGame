@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
-public class ChangueRoundUseCase {
+public class ChangeRoundUseCase {
     private final GameRepository gameRepository;
     private final FindGameByIdUseCase findgameByIdUseCase;
     public Mono<Game> changeRoundGame(String gameId){

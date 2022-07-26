@@ -42,5 +42,5 @@ public class GameDocument {
         this.idPlayer="";
     }
 
-
+   
 }

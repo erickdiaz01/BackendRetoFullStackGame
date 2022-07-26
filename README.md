@@ -11,8 +11,11 @@ Para el Front End Se usa Angular como framework en donde diseña una Single Page
 cual se reinderizan los componentes según la necesidad del negocio. se aclara que las iamgenes son cargadas
 en la carpeta assets del proyecto.
 
+<<<<<<< HEAD
 Link de Repositorio: https://github.com/DiegoFelipe7/FullStackGame/tree/main
 
+=======
+>>>>>>> Daniel
 Se realiza un modelado usando Domain Driven Design que nos facilita la abstracción de la 
 lógica del negocio para luego adaptar el código al juego de las cartas.
 
