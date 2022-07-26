@@ -22,7 +22,7 @@ public class DealCardsUseCase {
             Collections.shuffle(barajaASortear);
            var cardsPlayer=barajaASortear.stream().limit(5).map(card -> {
                         game.getBoard().getPrincipalMallet().remove(card);
-                       return  new CardInGame(card);
+                       return  new CardInGame(player.getPlayerId(),card);
                     }
             ).collect(Collectors.toSet());
             player.setCards(cardsPlayer);

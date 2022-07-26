@@ -19,7 +19,8 @@ public class ChangeStateViewCardsUseCase {
                 board.getCardsInGame()
                         .put(stringCardInGameEntry.getKey(),new CardInGame(stringCardInGameEntry.getValue().getCard(),stringCardInGameEntry.getValue().isViewed()==true?false:true))
                 );*/
-        board.getCardsInGame().forEach((s, cardInGame) -> {
+         board.getCardsInGame().stream().forEach(cardInGame -> cardInGame.setViewed(!cardInGame.isViewed()));
+                /*(s, cardInGame) -> {
 
                board.getCardsInGame().put(s,new CardInGame(cardInGame.getCard(), true));
             if(cardInGame.isViewed()==true){
@@ -28,7 +29,7 @@ public class ChangeStateViewCardsUseCase {
                 cardInGame.setViewed(true);
             }
                board.getCardsInGame().put(s,cardInGame);
-        });
+        });*/
 
         return boardRepository.changeStateViewCards(boardId,board);
     }

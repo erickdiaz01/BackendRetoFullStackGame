@@ -11,12 +11,16 @@ Para el Front End Se usa Angular como framework en donde diseña una Single Page
 cual se reinderizan los componentes según la necesidad del negocio. se aclara que las iamgenes son cargadas
 en la carpeta assets del proyecto.
 
+<<<<<<< HEAD
+Link de Repositorio: https://github.com/DiegoFelipe7/FullStackGame/tree/main
+
+=======
+>>>>>>> Daniel
 Se realiza un modelado usando Domain Driven Design que nos facilita la abstracción de la 
 lógica del negocio para luego adaptar el código al juego de las cartas.
 
 por último se realizan algunas pruebas unitarias al código y se documenta el código para mayor entendimiento.
-
-
+![image](https://user-images.githubusercontent.com/51167724/180928323-42884f97-f328-4228-8d5c-e15015afb9bb.png)
 
 ## Juego de SuperHeroes
 
