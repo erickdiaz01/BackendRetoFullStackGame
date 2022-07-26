@@ -15,6 +15,14 @@ public class betCardUseCase {
     private final selectCardUseCase selectCardUseCase;
     private final FindGameByIdUseCase findGameByIdUseCase;
 
+
+    /**Función de apuesta en el juego que reicbe los siguientes parametros:
+     * @param gameId
+     * @param playerId
+     * @param cardId
+     *
+     * @return
+     */
     public Mono<Game> betCardPlayer(String gameId , String playerId ,String cardId){
         var game = findGameByIdUseCase.findGameById(gameId).toFuture().join();
         var card = selectCardUseCase.selectCard(cardId,playerId,gameId).toFuture().join();

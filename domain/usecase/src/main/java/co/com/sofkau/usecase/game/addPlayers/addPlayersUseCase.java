@@ -10,6 +10,15 @@ import reactor.core.publisher.Mono;
 public class addPlayersUseCase {
     private final GameRepository gameRepository;
     private final FindGameByIdUseCase findGameByIdUseCase;
+
+
+    /**
+     * función de tipo Mono que guarda un jugador en el juego recibiendo por parametro el
+     * @param id
+     * @param player
+     * se crea el juego de tipo Game a la cual se le añade el jugador recibido por parámetro
+     * @return el repositorio
+     */
     public Mono<Game> savePlayer(String id , Player player){
         var game = findGameByIdUseCase.findGameById(id).toFuture().join();
         game.getPlayers().add(player);
