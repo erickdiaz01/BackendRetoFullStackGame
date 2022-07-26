@@ -16,6 +16,8 @@ lógica del negocio para luego adaptar el código al juego de las cartas.
 
 por último se realizan algunas pruebas unitarias al código y se documenta el código para mayor entendimiento.
 
+
+
 ## Juego de SuperHeroes
 
 En este juego consiste en tener un mazo de tarjetas de superhéroes de Marvel, vas a
