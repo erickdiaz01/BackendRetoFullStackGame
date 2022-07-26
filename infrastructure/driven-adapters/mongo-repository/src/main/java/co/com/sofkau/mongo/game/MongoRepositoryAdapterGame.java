@@ -64,21 +64,18 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
         return Mono.just(cardInGame);
     }
 
-    @Override
-    public Mono<Game> endGame(String gameId, Game game) {
-        return null;
-    }
 
-//    @Override
-//    public Mono<Game> restartGame(String gameId, Game game) {
-//        return null;
-//    }
-    /*
+
     @Override
     public Mono<Game> changeRound(String gameId, Game game) {
         game.setId(gameId);
         repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound())).toFuture().join();
         return Mono.just(game);
+    }
+
+    @Override
+    public Mono<Game> endGame(String gameId, Game game) {
+        return null;
     }
 
 
@@ -95,8 +92,6 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
         return repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound()))
                 .flatMap(gameDocument -> Mono.just(game));
     }
-
-*/
 
 }
 

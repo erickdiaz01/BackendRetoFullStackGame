@@ -3,6 +3,7 @@ package co.com.sofkau.api.game;
 import co.com.sofkau.model.board.Board;
 import co.com.sofkau.model.game.BoardPlayers;
 import co.com.sofkau.model.game.Game;
+import co.com.sofkau.model.player.Player;
 import co.com.sofkau.usecase.game.addPlayers.addPlayersUseCase;
 import co.com.sofkau.usecase.game.betCard.betCardUseCase;
 import co.com.sofkau.usecase.game.changeRound.ChangueRoundUseCase;
