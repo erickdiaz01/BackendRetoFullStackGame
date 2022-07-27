@@ -7,31 +7,26 @@ import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
 
-
+/**
+ * En este caso de uso se cambia el estado de 'viewed' de todas las cardsInGame que estan en el tablero, para que
+ * asi se puedan mostrar desde el front y comparar los poderes de cada una y asi saber el ganador
+ *
+ */
 @RequiredArgsConstructor
 public class ChangeStateViewCardsUseCase {
     private final BoardRepository boardRepository;
     private final FindGameByIdUseCase findGameByIdUseCase;
 
+    /**
+     * Metodo que recibe por parametros el id del tablero a recorrer y el tablero en si. Se recorre
+     * la lista de cartas en juego y se les cambia el estado a cada una a true
+     * @param boardId {String}
+     * @param board {Board}
+     * @return {Mono<Board>}
+     */
     public Mono<Board> changeStateViewOfCards(String boardId, Board board){
-         /*board.getCardsInGame().entrySet()
-                .stream()
-                .map(stringCardInGameEntry ->
-                board.getCardsInGame()
-                        .put(stringCardInGameEntry.getKey(),new CardInGame(stringCardInGameEntry.getValue().getCard(),stringCardInGameEntry.getValue().isViewed()==true?false:true))
-                );*/
 
          board.getCardsInGame().stream().forEach(cardInGame -> cardInGame.setViewed(!cardInGame.isViewed()));
-                /*(s, cardInGame) -> {
-
-               board.getCardsInGame().put(s,new CardInGame(cardInGame.getCard(), true));
-            if(cardInGame.isViewed()==true){
-                cardInGame.setViewed(false);
-            }else {
-                cardInGame.setViewed(true);
-            }
-               board.getCardsInGame().put(s,cardInGame);
-        });*/
 
         return boardRepository.changeStateViewCards(boardId,board);
     }
