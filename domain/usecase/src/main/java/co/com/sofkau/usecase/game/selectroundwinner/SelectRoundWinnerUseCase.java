@@ -43,7 +43,6 @@ public class SelectRoundWinnerUseCase {
         game.getBoard().getCardsInGame().forEach(cardInGame -> cardInGame.setPlayerId(winnerCard.getPlayerId()));
         winnerPlayer.getCards().addAll(game.getBoard().getCardsInGame());
         game.getBoard().getCardsInGame().clear();
-        verifyPlayerLosedUseCase.verifyPlayerLosed(gameId,game);
         return gameRepository.selectRoudnWinner(gameId,game);
     }
 }

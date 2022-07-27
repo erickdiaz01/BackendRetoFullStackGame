@@ -3,6 +3,7 @@ package co.com.sofkau.usecase.game.verifyplayerlosed;
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.game.gateways.GameRepository;
 import co.com.sofkau.usecase.game.changeRound.ChangeRoundUseCase;
+import co.com.sofkau.usecase.game.findbyid.FindGameByIdUseCase;
 import co.com.sofkau.usecase.game.winnergame.WinnerGameUseCase;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
@@ -17,21 +18,21 @@ public class VerifyPlayerLosedUseCase {
     private final GameRepository gameRepository;
     private final WinnerGameUseCase winnerGameUseCase;
     private final ChangeRoundUseCase changeRoundUseCase;
+    private  final FindGameByIdUseCase findGameByIdUseCase;
 
     /**
      *Metodo que filtra los jugadores que no tienen cartas en su mazo, asi los remueve de la lista.
      * Si en la lista de jugadores queda 1 solo jugador, este jugador es el ganador y se llama el caso de uso
      * de declarar ganador a un jugador, y si no, cambia la ronda para seguir jugando
      * @param gameId
-     * @param game
      * @return
      */
-    public Mono<Game> verifyPlayerLosed(String gameId,Game game){
-
+    public Mono<Game> verifyPlayerLosed(String gameId){
+        Game game = findGameByIdUseCase.findGameById(gameId).toFuture().join();
         game.getPlayers().stream().filter(player -> player.getCards().size()==0)
-                .map(player -> game.getPlayers().remove(player));
+                .forEach(player -> game.getPlayers().remove(player));
         if(game.getPlayers().size()<2){
-            winnerGameUseCase.winnerGame(gameId);
+            //winnerGameUseCase.winnerGame(gameId);
         }else{
             changeRoundUseCase.changeRoundGame(gameId);
         }
