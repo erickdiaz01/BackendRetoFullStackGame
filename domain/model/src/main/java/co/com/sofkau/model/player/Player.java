@@ -15,6 +15,7 @@ import java.util.Set;
 @Builder(toBuilder = true)
 public class Player {
     private String playerId;
+    private String name;
     private String email;
     private Integer globalScore;
     private Integer localScore;
@@ -33,15 +34,17 @@ public class Player {
         return Objects.hash(playerId, email);
     }
 
-    public Player(String playerId, String email) {
+    public Player(String playerId, String name , String email) {
         this.playerId = playerId;
+        this.name=name;
         this.email= email;
         this.globalScore= 0;
         this.localScore = 0;
         this.cards= new HashSet<>();
     }
 
-    public Player(String email){
+    public Player(String name,String email){
+        this.name=name;
         this.email= email;
         this.globalScore= 0;
         this.localScore = 0;

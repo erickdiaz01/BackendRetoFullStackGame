@@ -11,7 +11,5 @@ public interface PlayerRepository {
     Mono<Player> findById(String playerId);
     Mono <Player> update(String playerId, Player player);
     Mono <Void> deleteById(String playerId);
-    Mono<Player> assignCardToPlayer(String playerId, Player player);
-    Mono<Player> surrenderPlayer(String playerId, Player player);
     Mono<Player> addGlobalScore (String playerId,Player player);
 }

@@ -4,41 +4,38 @@ import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.game.gateways.GameRepository;
 import co.com.sofkau.usecase.game.findbyid.FindGameByIdUseCase;
 import co.com.sofkau.usecase.game.verifyplayerlosed.VerifyPlayerLosedUseCase;
-import co.com.sofkau.usecase.player.assigncardtoplayer.AssignCardToPlayerUseCase;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 import java.util.Comparator;
 
+/**
+ * Caso que selecciona el ganador de la ronda con respecto a la tarjeta apostada
+ */
 @RequiredArgsConstructor
 public class SelectRoundWinnerUseCase {
  private final GameRepository gameRepository;
-    private final AssignCardToPlayerUseCase assignCardToPlayerUseCase;
     private final FindGameByIdUseCase findGameByIdUseCase;
     private final VerifyPlayerLosedUseCase verifyPlayerLosedUseCase;
-    private final ChangeRoundUseCase changeRoundUseCase;
 
 
-
+    /**
+     * Metodo que recibe por parametro el id del juego para buscarlo, comparar las tarjetas en juego que tiene
+     * en el tablero y elegir la de maximo poder, esa tarjeta tiene un Id del jugador que la lanzo,
+     * posteriormente se inyectan las tarjetas de todo el tablero en juego hacia el mazo del ganador
+     * @param gameId {String}
+     * @return
+     */
     public Mono<Game> selectRoundWinner(String gameId){
        var game = findGameByIdUseCase.findGameById(gameId).toFuture().join();
         var winnerCard= game
-                /*.map(game1 -> game1.getBoard())
-                .map(board -> board.getCardsInGame()
-                        .stream().max(Comparator.comparing(cardInGame -> cardInGame.getCard().getPower())).orElseThrow())
-                .flatMap(game->game.);*/
                 .getBoard().getCardsInGame()
-                .stream().max(Comparator.comparing(cardInGame -> cardInGame.getCard().getPower())).get();
-        System.out.println(winnerCard);
-
+                .stream().max(Comparator.comparing(cardInGame -> cardInGame.getCard().getPower())).orElseThrow();
        var winnerPlayer = game.getPlayers().stream()
                .filter(player -> player.getPlayerId().equals(winnerCard.getPlayerId())).reduce((player, player2) -> player2).orElseThrow();
         game.getBoard().getCardsInGame().forEach(cardInGame -> cardInGame.setPlayerId(winnerCard.getPlayerId()));
         winnerPlayer.getCards().addAll(game.getBoard().getCardsInGame());
-        System.out.println(winnerPlayer);
         game.getBoard().getCardsInGame().clear();
-        System.out.println(game.getBoard());
-        assignCardToPlayerUseCase.assignCardToPlayer(winnerPlayer.getPlayerId(),winnerPlayer);
-        verifyPlayerLosedUseCase.verifyPlayerLosed(gameId);
+        verifyPlayerLosedUseCase.verifyPlayerLosed(gameId,game);
         return gameRepository.selectRoudnWinner(gameId,game);
     }
 }
