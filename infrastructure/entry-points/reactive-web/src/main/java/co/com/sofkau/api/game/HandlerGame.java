@@ -92,8 +92,8 @@ public class HandlerGame {
     }
     public Mono<ServerResponse> verifyPlayersLosed(ServerRequest serverRequest) {
         String id = serverRequest.pathVariable("id");
-
-        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(verifyPlayerLosedUseCase.verifyPlayerLosed(id), Game.class);
+        Game game = findGameByIdUseCase.findGameById(id).toFuture().join();
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(verifyPlayerLosedUseCase.verifyPlayerLosed(id,game), Game.class);
     }
     
     public Mono<ServerResponse> selectCard(ServerRequest serverRequest){
@@ -111,7 +111,8 @@ public class HandlerGame {
     }
     public Mono<ServerResponse> winnerGame(ServerRequest serverRequest){
         String gameId = serverRequest.pathVariable("id");
-        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(winnerGameUseCase.winnerGame(gameId),Game.class);
+        Game game = findGameByIdUseCase.findGameById(gameId).toFuture().join();
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(winnerGameUseCase.winnerGame(gameId,game),Game.class);
     }
     public  Mono<ServerResponse> selectRoundWinner(ServerRequest serverRequest){
         String id = serverRequest.pathVariable("id");

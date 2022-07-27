@@ -37,7 +37,7 @@ public class SelectRoundWinnerUseCase {
                //.toFuture().join();
         var winnerCard= game
                 .getBoard().getCardsInGame()
-                .stream().max(Comparator.comparing(cardInGame -> cardInGame.getCard().getPower())).orElseThrow();
+                .stream().max(Comparator.comparing(cardInGame -> cardInGame.getCard().getPower())).orElseThrow(() -> new RuntimeException("No hay carta"));
        var winnerPlayer = game.getPlayers().stream()
                .filter(player -> player.getPlayerId().equals(winnerCard.getPlayerId())).reduce((player, player2) -> player2).orElseThrow();
         game.getBoard().getCardsInGame().forEach(cardInGame -> cardInGame.setPlayerId(winnerCard.getPlayerId()));
