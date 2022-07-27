@@ -21,7 +21,6 @@ public class MongoRepositoryAdapterBoard extends AdapterOperations<Board, BoardD
          */
         super(repository, mapper, d -> mapper.map(d, Board.class/* change for domain model */));
     }
-
     @Override
     public Mono<Board> update(String boardId, Board board) {
         return null;
@@ -33,25 +32,8 @@ public class MongoRepositoryAdapterBoard extends AdapterOperations<Board, BoardD
         return repository.save(new BoardDocument(board.getBoardId(),board.getCardsInGame(),board.getPrincipalMallet())).map(boardDocument -> new Board(boardDocument.getBoardId(),boardDocument.getCardsInGame(),boardDocument.getPrincipalMallet()));
     }
 
-    @Override
-    public Mono<Board> ifNotWinnerChangeRound(String boardId, Board board) {
-        return null;
-    }
 
-    @Override
-    public Mono<Board> selectWinnerCard(String boardId, Board board) {
-        return null;
-    }
 
-    @Override
-    public Mono<Board> receiveCards(String boardId, Board board) {
-        return null;
-    }
-
-    @Override
-    public Mono<Board> receiveCardsOfLeftPlayer(String boardId, Board board) {
-        return null;
-    }
 
 
 
