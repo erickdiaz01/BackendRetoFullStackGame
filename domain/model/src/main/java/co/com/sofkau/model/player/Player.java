@@ -24,14 +24,14 @@ public class Player {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Player)) return false;
         Player player = (Player) o;
-        return playerId.equals(player.playerId) && email.equals(player.email);
+        return playerId.equals(player.playerId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(playerId, email);
+        return Objects.hash(playerId);
     }
 
     public Player(String playerId, String name , String email) {
