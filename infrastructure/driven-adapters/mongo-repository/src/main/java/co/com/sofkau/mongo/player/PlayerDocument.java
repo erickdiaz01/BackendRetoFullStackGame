@@ -10,6 +10,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Data
@@ -38,6 +39,19 @@ public class PlayerDocument {
         this.globalScore= 0;
         this.localScore = 0;
         this.cards= new HashSet<>();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PlayerDocument)) return false;
+        PlayerDocument that = (PlayerDocument) o;
+        return playerId.equals(that.playerId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(playerId);
     }
 
     public PlayerDocument(String email){
