@@ -26,6 +26,7 @@ public class addPlayersUseCase {
      * @return
      */
     public Mono<Game> savePlayer(String gameId , Player player){
+
         var game = findGameByIdUseCase.findGameById(gameId).toFuture().join();
         game.getPlayers().add(player);
         if(game.getPlayers().size()>=2){
