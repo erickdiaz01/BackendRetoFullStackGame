@@ -29,8 +29,7 @@ public class WinnerGameUseCase {
      * @param gameId
      * @return
      */
-    public Mono<Game> winnerGame(String gameId){
-        Game game = findGameByIdUseCase.findGameById(gameId).toFuture().join();
+    public Mono<Game> winnerGame(String gameId,Game game){
         var winner= game.getPlayers().stream().distinct().collect(Collectors.toList()).stream().reduce((player, player2) -> player2).orElseThrow();
         game.setIdPlayer(winner.getPlayerId());
         addGlobalScoreUseCase.addGlobalScore(winner.getPlayerId());
