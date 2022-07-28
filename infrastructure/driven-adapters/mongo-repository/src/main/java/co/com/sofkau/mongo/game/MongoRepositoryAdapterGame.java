@@ -64,6 +64,7 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
     }
 
 
+
     @Override
     public Mono<Game> changeRound(String gameId, Game game) {
         game.setId(gameId);
@@ -71,10 +72,6 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
         return Mono.just(game);
     }
 
-    @Override
-    public Mono<Game> endGame(String gameId, Game game) {
-        return null;
-    }
 
 
     @Override

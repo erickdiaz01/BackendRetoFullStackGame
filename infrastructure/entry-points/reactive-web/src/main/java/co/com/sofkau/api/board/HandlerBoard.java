@@ -6,10 +6,6 @@ import co.com.sofkau.usecase.board.changestateviewcards.ChangeStateViewCardsUseC
 import co.com.sofkau.usecase.board.createboard.CreateBoardUseCase;
 import co.com.sofkau.usecase.board.deleteboard.DeleteBoardUseCase;
 import co.com.sofkau.usecase.board.findbyidboard.FindByIdBoardUseCase;
-import co.com.sofkau.usecase.board.ifnotwinnerchangeround.IfNotWinnerChangeRoundUseCase;
-import co.com.sofkau.usecase.board.receivecards.ReceiveCardsUseCase;
-import co.com.sofkau.usecase.board.receivecardsofleftplayer.ReceiveCardsOfLeftPlayerUseCase;
-import co.com.sofkau.usecase.game.selectroundwinner.SelectRoundWinnerUseCase;
 import co.com.sofkau.usecase.board.updateboard.UpdateBoardUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -27,10 +23,6 @@ public class HandlerBoard {
     private final FindByIdBoardUseCase findByIdBoardUseCase;
 
     private final ChangeStateViewCardsUseCase changeStateViewCardsUseCase;
-    private final IfNotWinnerChangeRoundUseCase ifNotWinnerChangeRoundUseCase;
-
-    private final ReceiveCardsUseCase receiveCardsUseCase;
-    private final ReceiveCardsOfLeftPlayerUseCase receiveCardsOfLeftPlayerUseCase;
 
     /**
      * Método para Crear un tablero utilizando un Mono de tipo Server Response, recibe el
@@ -83,37 +75,12 @@ public class HandlerBoard {
         Board board = findByIdBoardUseCase.findBoardById(id).toFuture().join();
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(changeStateViewCardsUseCase.changeStateViewOfCards(id,board), Game.class);
     }
-    public  Mono<ServerResponse> ifNotWinnerChangeRound(ServerRequest serverRequest){
-        String id = serverRequest.pathVariable("id");
-
-        return serverRequest.bodyToMono(Board.class)
-                .flatMap(board -> ServerResponse.ok()
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(ifNotWinnerChangeRoundUseCase
-                                .ifNotWinnerChangeRound(id,board),Board.class));
-    }
 
 
 
-    public  Mono<ServerResponse> receiveCards(ServerRequest serverRequest){
-        String id = serverRequest.pathVariable("id");
 
-        return serverRequest.bodyToMono(Board.class)
-                .flatMap(board -> ServerResponse.ok()
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(receiveCardsUseCase.receiveCards
-                                (id,board),Board.class));
-    }
 
-    public  Mono<ServerResponse> receiveCardsOfLeftPlayer(ServerRequest serverRequest){
-        String id = serverRequest.pathVariable("id");
 
-        return serverRequest.bodyToMono(Board.class)
-                .flatMap(board -> ServerResponse.ok()
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(receiveCardsOfLeftPlayerUseCase.receiveCardsOfLeftPlayer
-                                (id,board),Board.class));
-    }
 
 
 

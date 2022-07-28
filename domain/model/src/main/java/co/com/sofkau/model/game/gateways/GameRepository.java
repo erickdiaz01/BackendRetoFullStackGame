@@ -24,11 +24,6 @@ public interface GameRepository {
 
 
     Mono<Game> changeRound(String gameId , Game game);
-    Mono<Game> endGame(String gameId, Game game);
-
-    /*
-    Mono<Game> betCardPlayer(String gameId , String playerId , String cardId, Game game);*/
-
     Mono<Game> betCardPlayer(String gameId , Game game);
     Mono<Game> selectRoudnWinner(String gameId, Game game);
 
