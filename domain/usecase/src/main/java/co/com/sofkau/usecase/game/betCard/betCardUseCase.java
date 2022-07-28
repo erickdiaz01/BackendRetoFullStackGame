@@ -20,7 +20,7 @@ public class betCardUseCase {
     private final GameRepository gameRepository;
     private final selectCardUseCase selectCardUseCase;
     private final FindGameByIdUseCase findGameByIdUseCase;
-<<<<<<< HEAD
+
 
 
     /**Función de apuesta en el juego que reicbe los siguientes parametros:
@@ -30,12 +30,10 @@ public class betCardUseCase {
      *
      * @return
      */
-=======
+
     private final ChangeStateViewCardsUseCase changeStateViewCardsUseCase;
-<<<<<<< HEAD
-private  final SelectRoundWinnerUseCase selectRoundWinnerUseCase;
->>>>>>> main
-=======
+    private  final SelectRoundWinnerUseCase selectRoundWinnerUseCase;
+
 
     /**
      *Metodo que recibe por parametros el id del juego, el id del jugador que apuesta la carta y el
@@ -49,7 +47,7 @@ private  final SelectRoundWinnerUseCase selectRoundWinnerUseCase;
      * @param cardId {String}
      * @return {Mono<Game>}
      */
->>>>>>> main
+
     public Mono<Game> betCardPlayer(String gameId , String playerId ,String cardId){
         var game = findGameByIdUseCase.findGameById(gameId).toFuture().join();
         var card = selectCardUseCase.selectCard(cardId,playerId,gameId).toFuture().join();
