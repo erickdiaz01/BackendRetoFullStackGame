@@ -12,8 +12,7 @@ public class WinnerGameUseCase {
     private final GameRepository gameRepository;
     private final FindGameByIdUseCase findGameByIdUseCase;
 private final AddGlobalScoreUseCase addGlobalScoreUseCase;
-    public Mono<Game> winnerGame(String gameId){
-         Game game = findGameByIdUseCase.findGameById(gameId).toFuture().join();
+    public Mono<Game> winnerGame(String gameId,Game game){
         var winner= game.getPlayers().stream().findFirst().get();
         game.setIdPlayer(winner.getPlayerId());
         addGlobalScoreUseCase.addGlobalScore(winner.getPlayerId());
