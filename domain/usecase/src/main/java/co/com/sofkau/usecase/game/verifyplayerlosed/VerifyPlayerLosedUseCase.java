@@ -35,7 +35,7 @@ public class VerifyPlayerLosedUseCase {
        var algo = game.getPlayers().stream().filter(player -> player.getCards().isEmpty()).collect(Collectors.toSet());
        game.getPlayers().removeAll(algo);
         if(game.getPlayers().size()<2){
-            winnerGameUseCase.winnerGame(gameId,game);
+            winnerGameUseCase.winnerGame(gameId);
         }else{
             changeRoundUseCase.changeRoundGame(gameId);
         }
