@@ -1,5 +1,7 @@
 package co.com.sofkau.usecase.game.verifyplayerlosed;
 
+import java.util.stream.Collectors;
+
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.game.gateways.GameRepository;
 import co.com.sofkau.model.player.Player;
@@ -32,9 +34,8 @@ public class VerifyPlayerLosedUseCase {
      * @return
      */
     public Mono<Game> verifyPlayerLosed(String gameId, Game game){
-       var algo = game.getPlayers().stream().filter(player -> player.getCards().isEmpty()).collect(Collectors.toSet());
-       game.getPlayers().removeAll(algo);
-        System.out.println(algo);
+       var data = game.getPlayers().stream().filter(player -> player.getCards().isEmpty()).collect(Collectors.toSet());
+       game.getPlayers().removeAll(data);
         if(game.getPlayers().size()<2){
             System.out.println("hola");
             winnerGameUseCase.winnerGame(gameId,game);

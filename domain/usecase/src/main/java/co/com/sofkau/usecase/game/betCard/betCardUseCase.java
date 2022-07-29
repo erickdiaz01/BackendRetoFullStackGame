@@ -20,6 +20,17 @@ public class betCardUseCase {
     private final GameRepository gameRepository;
     private final selectCardUseCase selectCardUseCase;
     private final FindGameByIdUseCase findGameByIdUseCase;
+
+
+
+    /**Función de apuesta en el juego que reicbe los siguientes parametros:
+     * @param gameId
+     * @param playerId
+     * @param cardId
+     *
+     * @return
+     */
+
     private final ChangeStateViewCardsUseCase changeStateViewCardsUseCase;
 
     /**

@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.chrono.ChronoLocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,15 +22,23 @@ public class Game {
     private String idPlayer;
     private Integer round;
 
+    private Boolean begined;
+
+    private LocalDateTime creation;
+
     public Game(Board board) {
         this.board = board;
         this.idPlayer="";
+        this.begined=false;
+        this.creation= LocalDateTime.now() ;
     }
    
 
     public Game(Board board, Set<Player> players) {
         this.board = board;
         this.players = players;
+        this.begined=false;
+        this.creation= LocalDateTime.now() ;
     }
 
     public Game(){
@@ -35,7 +46,7 @@ public class Game {
         this.players = new HashSet<>();
         this.round = 1;
         this.idPlayer = "";
+        this.begined=false;
+        this.creation= LocalDateTime.now() ;
     }
-
-
 }

@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.HashSet;
@@ -20,21 +21,24 @@ import java.util.Set;
 public class PlayerDocument {
     @Id
     private String playerId;
+    private String name;
     private String email;
     private Integer globalScore;
     private Integer localScore;
     private Set<CardInGame> cards;
 
-    public PlayerDocument(String playerId, String email, Integer globalScore, Integer localScore) {
+    public PlayerDocument(String playerId,String name, String email, Integer globalScore, Integer localScore) {
         this.playerId = playerId;
+        this.name=name;
         this.email = email;
         this.globalScore = globalScore;
         this.localScore = localScore;
       this.cards=new HashSet<>();
     }
 
-    public PlayerDocument(String playerId, String email) {
+    public PlayerDocument(String playerId, String name, String email) {
         this.playerId = playerId;
+        this.name=name;
         this.email= email;
         this.globalScore= 0;
         this.localScore = 0;
@@ -54,7 +58,8 @@ public class PlayerDocument {
         return Objects.hash(playerId);
     }
 
-    public PlayerDocument(String email){
+    public PlayerDocument(String name,String email){
+        this.name=name;
         this.email= email;
         this.globalScore= 0;
         this.localScore = 0;

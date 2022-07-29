@@ -1,6 +1,5 @@
 package co.com.sofkau.api.game;
 
-import co.com.sofkau.model.game.BoardPlayers;
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.player.Player;
 import co.com.sofkau.usecase.game.addPlayers.addPlayersUseCase;
@@ -126,10 +125,9 @@ public class HandlerGame {
 
     public Mono <ServerResponse> startGame(ServerRequest serverRequest){
         var gameId = serverRequest.pathVariable("id");
-        return serverRequest.bodyToMono(BoardPlayers.class)
-                .flatMap(element -> ServerResponse.ok()
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(startGameUseCase.startGame(gameId,element.getPlayersInGame(),element.getBoard()),Game.class));
+        Game game = findGameByIdUseCase.findGameById(gameId).toFuture().join();
+        System.out.println("entre aqui");
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(startGameUseCase.startGame(gameId,game),Game.class);
     }
 
 

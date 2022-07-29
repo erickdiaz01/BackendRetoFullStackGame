@@ -2,18 +2,11 @@ package co.com.sofkau.usecase.game.selectroundwinner;
 
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.game.gateways.GameRepository;
-import co.com.sofkau.model.objectvalues.CardInGame;
-import co.com.sofkau.usecase.board.changestateviewcards.ChangeStateViewCardsUseCase;
-import co.com.sofkau.usecase.game.changeRound.ChangeRoundUseCase;
 import co.com.sofkau.usecase.game.findbyid.FindGameByIdUseCase;
 import co.com.sofkau.usecase.game.verifyplayerlosed.VerifyPlayerLosedUseCase;
 import lombok.RequiredArgsConstructor;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
 import java.util.Comparator;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Caso que selecciona el ganador de la ronda con respecto a la tarjeta apostada
@@ -34,7 +27,6 @@ public class SelectRoundWinnerUseCase {
      */
     public Mono<Game> selectRoundWinner(String gameId){
        var game = findGameByIdUseCase.findGameById(gameId).toFuture().join();
-               //.toFuture().join();
         var winnerCard= game
                 .getBoard().getCardsInGame()
                 .stream().max(Comparator.comparing(cardInGame -> cardInGame.getCard().getPower())).orElseThrow(() -> new RuntimeException("No hay carta"));
