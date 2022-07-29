@@ -32,8 +32,6 @@ public class betCardUseCase {
      */
 
     private final ChangeStateViewCardsUseCase changeStateViewCardsUseCase;
-    private  final SelectRoundWinnerUseCase selectRoundWinnerUseCase;
-
 
     /**
      *Metodo que recibe por parametros el id del juego, el id del jugador que apuesta la carta y el
@@ -47,7 +45,6 @@ public class betCardUseCase {
      * @param cardId {String}
      * @return {Mono<Game>}
      */
-
     public Mono<Game> betCardPlayer(String gameId , String playerId ,String cardId){
         var game = findGameByIdUseCase.findGameById(gameId).toFuture().join();
         var card = selectCardUseCase.selectCard(cardId,playerId,gameId).toFuture().join();

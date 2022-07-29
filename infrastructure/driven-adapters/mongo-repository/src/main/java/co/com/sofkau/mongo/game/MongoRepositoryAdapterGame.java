@@ -20,14 +20,14 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
     @Override
     public Mono<Game> addPlayerGame(String gameId, Game game) {
         game.setId(gameId);
-        return repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound()))
+        return repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound(),game.getBegined(),game.getCreation()))
                 .flatMap(elemet->Mono.just(game));
     }
 
     @Override
     public Mono<Game> winnerGame(String gameId, Game game) {
         game.setId(gameId);
-        return repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound()))
+        return repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound(),game.getBegined(),game.getCreation()))
                 .flatMap(elemet->Mono.just(game));
     }
 
@@ -40,22 +40,22 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
     @Override
     public Mono<Game> dealCards(String gameId, Game game) {
         game.setId(gameId);
-        return repository.save(new GameDocument(game.getId(), game.getBoard(), game.getPlayers(), game.getIdPlayer(), game.getRound()))
+        return repository.save(new GameDocument(game.getId(), game.getBoard(), game.getPlayers(), game.getIdPlayer(), game.getRound(),game.getBegined(),game.getCreation()))
                 .flatMap(gameDocument -> Mono.just(game));
     }
 
     @Override
     public Mono<Game> playerLosed(String gameId, Game game) {
         game.setId(gameId);
-        return repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound()))
+        return repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound(),game.getBegined(),game.getCreation()))
                 .flatMap(gameDocument -> Mono.just(game));
     }
     public Mono<Game> surrenderPlayer(String playerId, Game game, String gameId) {
 
         game.setId(gameId);
         return repository.
-                save(new GameDocument(game.getId(), game.getBoard(), game.getPlayers(), game.getIdPlayer(), game.getRound()))
-                .map(gameDocument -> new Game(gameDocument.getId(), gameDocument.getBoard(), gameDocument.getPlayers(), gameDocument.getIdPlayer(), gameDocument.getRound()));
+                save(new GameDocument(game.getId(), game.getBoard(), game.getPlayers(), game.getIdPlayer(), game.getRound(),game.getBegined(),game.getCreation()))
+                .flatMap(gameDocument -> Mono.just(game));
     }
 
     @Override
@@ -70,7 +70,7 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
     @Override
     public Mono<Game> changeRound(String gameId, Game game) {
         game.setId(gameId);
-        repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound())).toFuture().join();
+        repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound(),game.getBegined(),game.getCreation())).toFuture().join();
         return Mono.just(game);
     }
 
@@ -78,17 +78,28 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
     @Override
     public Mono<Game> betCardPlayer(String gameId, Game game) {
         game.setId(gameId);
-        return repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound()))
+        return repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound(),game.getBegined(),game.getCreation()))
                 .flatMap(gameDocument -> Mono.just(game));
     }
 
     @Override
     public Mono<Game> selectRoudnWinner(String gameId, Game game) {
         game.setId(gameId);
-        return repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound()))
+        return repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound(),game.getBegined(),game.getCreation()))
                 .flatMap(gameDocument -> Mono.just(game));
     }
 
+    @Override
+    public Mono<Game> startGame(String gameId, Game game) {
+        game.setId(gameId);
+        System.out.println(String.format("Entre a mongo %s",game.getBegined()));
+        return repository.save(new GameDocument(game.getId(),game.getBoard(),game.getPlayers(),game.getIdPlayer(),game.getRound(),game.getBegined(),game.getCreation()))
+                .flatMap(gameDocument -> {
+
+                    System.out.println(gameDocument.getBegined());
+                    return Mono.just(game);
+                });
+    }
 
 
 }
