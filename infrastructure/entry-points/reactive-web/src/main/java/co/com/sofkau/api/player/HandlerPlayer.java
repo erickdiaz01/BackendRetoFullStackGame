@@ -5,6 +5,7 @@ import co.com.sofkau.usecase.player.createplayer.CreatePlayerUseCase;
 import co.com.sofkau.usecase.player.deleteplayer.DeletePlayerUseCase;
 import co.com.sofkau.usecase.player.findallplayers.FindAllPlayersUseCase;
 import co.com.sofkau.usecase.player.findplayerbyid.FindPlayerByIdUseCase;
+import co.com.sofkau.usecase.player.playerRanking.RankingPlayerUseCase;
 import co.com.sofkau.usecase.player.updateplayer.UpdatePlayerUseCase;
 import co.com.sofkau.usecase.player.addglobalscore.AddGlobalScoreUseCase;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,8 @@ public class HandlerPlayer {
     private final UpdatePlayerUseCase updatePlayerUseCase;
     private final FindPlayerByIdUseCase findPlayerByIdUseCase;
     private final DeletePlayerUseCase deletePlayerUseCase;
+
+    private final RankingPlayerUseCase rankingPlayerUseCase;
 
 
 private final AddGlobalScoreUseCase addGlobalScoreUseCase;
@@ -70,6 +73,13 @@ private final AddGlobalScoreUseCase addGlobalScoreUseCase;
         String playerId = serverRequest.pathVariable("id");
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON).body(addGlobalScoreUseCase.addGlobalScore(playerId), Player.class);
+    }
+
+    public Mono<ServerResponse> rankingPlayers(ServerRequest serverRequest){
+        Flux<Player> player = findAllPlayersUseCase.findAllPlayers();
+        return  ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(rankingPlayerUseCase.rankinPlayer(),Player.class);
     }
 
 }

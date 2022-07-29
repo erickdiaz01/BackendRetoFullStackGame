@@ -4,11 +4,15 @@ import java.util.stream.Collectors;
 
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.game.gateways.GameRepository;
+import co.com.sofkau.model.player.Player;
 import co.com.sofkau.usecase.game.changeRound.ChangeRoundUseCase;
+import co.com.sofkau.usecase.game.findbyid.FindGameByIdUseCase;
 import co.com.sofkau.usecase.game.winnergame.WinnerGameUseCase;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
+import java.util.HashSet;
+import java.util.stream.Collectors;
 
 
 /**
@@ -19,7 +23,7 @@ public class VerifyPlayerLosedUseCase {
     private final GameRepository gameRepository;
     private final WinnerGameUseCase winnerGameUseCase;
     private final ChangeRoundUseCase changeRoundUseCase;
-    
+    private  final FindGameByIdUseCase findGameByIdUseCase;
 
     /**
      * Metodo que filtra los jugadores que no tienen cartas en su mazo, asi los remueve de la lista.
@@ -31,9 +35,8 @@ public class VerifyPlayerLosedUseCase {
      * @return
      */
     public Mono<Game> verifyPlayerLosed(String gameId, Game game){
-       var algo = game.getPlayers().stream() 
-       .filter(player -> player.getCards().size()==0||player.getCards().isEmpty()).collect(Collectors.toSet());
-       game.getPlayers().removeAll(algo);
+       var data = game.getPlayers().stream().filter(player -> player.getCards().isEmpty()).collect(Collectors.toSet());
+       game.getPlayers().removeAll(data);
         if(game.getPlayers().size()<2){
             winnerGameUseCase.winnerGame(gameId,game);
         }else{

@@ -40,6 +40,8 @@ public RouterFunction<ServerResponse> routerFunction(HandlerCard handlerCard, Ha
             .andRoute(POST("/api/game/selectroundwinner/{id}"),handlerGame::selectRoundWinner)
             .andRoute(POST("/api/game/startgame/{id}"),handlerGame::startGame)
             .andRoute(POST("/api/player/createplayer"), handlerPlayer::createPlayer)
+            .andRoute(GET("/api/player/ranking"),handlerPlayer::rankingPlayers)
+            .andRoute(GET("/api/player/listplayer"),handlerPlayer::findAllPlayers)
             .andRoute(GET("/api/player/listplayer/{id}"),handlerPlayer::findPlayerById)
             .andRoute(PUT("/api/player/updateplayer/{id}"),handlerPlayer::updatePlayer)
             .andRoute(DELETE("api/player/deleteplayer/{id}"),handlerPlayer::deletePlayerById)
