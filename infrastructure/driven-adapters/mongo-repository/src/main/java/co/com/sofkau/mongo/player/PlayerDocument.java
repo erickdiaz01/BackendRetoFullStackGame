@@ -27,7 +27,7 @@ public class PlayerDocument {
     private Integer localScore;
     private Set<CardInGame> cards;
 
-    public PlayerDocument(String playerId, String email, Integer globalScore, Integer localScore) {
+    public PlayerDocument(String playerId,String name, String email, Integer globalScore, Integer localScore) {
         this.playerId = playerId;
         this.name=name;
         this.email = email;

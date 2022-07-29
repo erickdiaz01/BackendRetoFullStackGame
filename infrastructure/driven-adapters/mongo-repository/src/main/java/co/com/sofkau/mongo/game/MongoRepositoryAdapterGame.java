@@ -90,8 +90,7 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
                 .flatMap(gameDocument -> Mono.just(game));
     }
 
-<<<<<<< HEAD
-=======
+
     @Override
     public Mono<Game> startGame(String gameId, Game game) {
         game.setId(gameId);
@@ -105,6 +104,6 @@ public class MongoRepositoryAdapterGame extends AdapterOperations<Game, GameDocu
     }
 
 
->>>>>>> Erick
+
 }
 
