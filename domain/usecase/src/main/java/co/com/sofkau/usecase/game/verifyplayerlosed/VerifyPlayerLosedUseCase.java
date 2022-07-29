@@ -33,8 +33,8 @@ public class VerifyPlayerLosedUseCase {
      * @return
      */
     public Mono<Game> verifyPlayerLosed(String gameId, Game game){
-       var algo = game.getPlayers().stream().filter(player -> player.getCards().isEmpty()).collect(Collectors.toSet());
-       game.getPlayers().removeAll(algo);
+       var data = game.getPlayers().stream().filter(player -> player.getCards().isEmpty()).collect(Collectors.toSet());
+       game.getPlayers().removeAll(data);
         if(game.getPlayers().size()<2){
             winnerGameUseCase.winnerGame(gameId,game);
         }else{

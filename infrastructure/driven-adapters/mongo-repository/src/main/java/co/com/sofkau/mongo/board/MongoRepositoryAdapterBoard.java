@@ -38,4 +38,3 @@ public class MongoRepositoryAdapterBoard extends AdapterOperations<Board, BoardD
 
 
 }
-

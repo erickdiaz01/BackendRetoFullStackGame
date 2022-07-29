@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,17 +25,23 @@ public class GameDocument {
     private Set<Player> players;
     private String idPlayer;
     private Integer round;
+    private Boolean begined;
+    private LocalDateTime creation;
 
     public GameDocument(String id, Board board) {
         this.id=id;
         this.board = board;
         this.idPlayer="";
+        this.begined=false;
+        this.creation= LocalDateTime.now() ;
     }
     public GameDocument(){
         this.board=new Board();
         this.idPlayer="";
         this.players=new HashSet<>();
         this.round=1;
+        this.begined=false;
+        this.creation= LocalDateTime.now() ;
     }
 
     public GameDocument(String id, Board board, Set<Player> players) {
@@ -40,6 +49,8 @@ public class GameDocument {
         this.board = board;
         this.players = players;
         this.idPlayer="";
+        this.begined=false;
+        this.creation= LocalDateTime.now() ;
     }
 
    
