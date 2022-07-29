@@ -45,7 +45,7 @@ class CreateBoardUseCaseTest {
         when(boardRepository.save(board)).thenReturn(Mono.just(board));
 
         StepVerifier.create(createBoardUseCase.createBoard(board)).assertNext(boardTen ->{
-            Assertions.assertEquals(2, boardTen.getPrincipalMallet().size());
+            Assertions.assertEquals(1, boardTen.getPrincipalMallet().size());
 
 
         }).expectComplete().verify();
