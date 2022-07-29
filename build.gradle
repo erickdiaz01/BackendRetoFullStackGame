@@ -30,3 +30,6 @@ sonarqube {
 }
 
 apply from: './main.gradle'
+
+
+
