@@ -28,15 +28,11 @@ public class SelectRoundWinnerUseCase {
 
     public Mono<Game> selectRoundWinner(String gameId){
        var game = findGameByIdUseCase.findGameById(gameId).toFuture().join();
-               //.toFuture().join();
+
         var winnerCard= game
-                /*.map(game1 -> game1.getBoard())
-                .map(board -> board.getCardsInGame()
-                        .stream().max(Comparator.comparing(cardInGame -> cardInGame.getCard().getPower())).orElseThrow())
-                .flatMap(game->game.);*/
                 .getBoard().getCardsInGame()
                 .stream().max(Comparator.comparing(cardInGame -> cardInGame.getCard().getPower())).get();
-        System.out.println(winnerCard);
+
 
        var winnerPlayer = game.getPlayers().stream()
                .filter(player -> player.getPlayerId().equals(winnerCard.getPlayerId())).reduce((player, player2) -> player2).orElseThrow();
