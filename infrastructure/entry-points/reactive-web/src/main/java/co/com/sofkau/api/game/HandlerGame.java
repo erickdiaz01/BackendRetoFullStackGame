@@ -1,6 +1,5 @@
 package co.com.sofkau.api.game;
 
-import co.com.sofkau.model.game.BoardPlayers;
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.player.Player;
 import co.com.sofkau.usecase.game.addPlayers.addPlayersUseCase;
@@ -92,8 +91,8 @@ public class HandlerGame {
     }
     public Mono<ServerResponse> verifyPlayersLosed(ServerRequest serverRequest) {
         String id = serverRequest.pathVariable("id");
-        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(verifyPlayerLosedUseCase.verifyPlayerLosed(id), Game.class);
-
+        Game game = findGameByIdUseCase.findGameById(id).toFuture().join();
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(verifyPlayerLosedUseCase.verifyPlayerLosed(id,game), Game.class);
     }
     
     public Mono<ServerResponse> selectCard(ServerRequest serverRequest){
@@ -111,7 +110,8 @@ public class HandlerGame {
     }
     public Mono<ServerResponse> winnerGame(ServerRequest serverRequest){
         String gameId = serverRequest.pathVariable("id");
-        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(winnerGameUseCase.winnerGame(gameId),Game.class);
+        Game game = findGameByIdUseCase.findGameById(gameId).toFuture().join();
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(winnerGameUseCase.winnerGame(gameId,game),Game.class);
     }
     public  Mono<ServerResponse> selectRoundWinner(ServerRequest serverRequest){
         String id = serverRequest.pathVariable("id");
@@ -125,10 +125,9 @@ public class HandlerGame {
 
     public Mono <ServerResponse> startGame(ServerRequest serverRequest){
         var gameId = serverRequest.pathVariable("id");
-        return serverRequest.bodyToMono(BoardPlayers.class)
-                .flatMap(element -> ServerResponse.ok()
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(startGameUseCase.startGame(gameId,element.getPlayersInGame(),element.getBoard()),Game.class));
+        Game game = findGameByIdUseCase.findGameById(gameId).toFuture().join();
+        System.out.println("entre aqui");
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(startGameUseCase.startGame(gameId,game),Game.class);
     }
 
 

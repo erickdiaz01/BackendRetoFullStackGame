@@ -12,25 +12,14 @@ public interface GameRepository {
     Mono<Game> addPlayerGame(String id , Game game);
     Mono<Game> winnerGame (String gameId,Game game);
     Mono<Long> countPlayers(String gameId,Game game);
-
     Mono<Game> dealCards(String gameId,Game game);
-
     Mono<Game> playerLosed(String gameId,Game game);
-
-
     Mono<Game> surrenderPlayer(String playerId, Game game, String gameId);
     Mono<CardInGame> selectCard (CardInGame cardInGame);
-
-
-
     Mono<Game> changeRound(String gameId , Game game);
-    Mono<Game> endGame(String gameId, Game game);
-
-    /*
-    Mono<Game> betCardPlayer(String gameId , String playerId , String cardId, Game game);*/
-
     Mono<Game> betCardPlayer(String gameId , Game game);
     Mono<Game> selectRoudnWinner(String gameId, Game game);
+    Mono<Game> startGame(String gameId,Game game);
 
 
 }

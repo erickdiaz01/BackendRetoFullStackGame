@@ -20,21 +20,11 @@ public class MongoRepositoryAdapterPlayer extends AdapterOperations<Player, Play
     }
     @Override
     public Mono<Player> update(String playerId, Player player) {
-        return null;
-    }
-
-    @Override
-    public Mono<Player> assignCardToPlayer(String playerId, Player player) {
-        return null;
-    }
-
-
-    public Mono <Player> surrenderPlayer(String playerId, Player player){
         player.setPlayerId(playerId);
-        return repository
-                .save(new PlayerDocument(player.getPlayerId(), player.getEmail(), player.getGlobalScore(),player.getLocalScore(),player.getCards()))
-                .flatMap(p -> Mono.just(player));
+        repository.save(new PlayerDocument(player.getPlayerId(), player.getEmail(), player.getGlobalScore(),player.getLocalScore())).toFuture().join();
+        return Mono.just(player);
     }
+
 
     @Override
     public Mono<Player> addGlobalScore(String playerId, Player player) {
