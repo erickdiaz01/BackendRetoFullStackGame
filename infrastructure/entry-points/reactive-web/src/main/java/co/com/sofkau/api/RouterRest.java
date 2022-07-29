@@ -43,7 +43,6 @@ public RouterFunction<ServerResponse> routerFunction(HandlerCard handlerCard, Ha
             .andRoute(GET("/api/player/listplayer/{id}"),handlerPlayer::findPlayerById)
             .andRoute(PUT("/api/player/updateplayer/{id}"),handlerPlayer::updatePlayer)
             .andRoute(DELETE("api/player/deleteplayer/{id}"),handlerPlayer::deletePlayerById)
-            .andRoute(POST("api/player/assigncards/{id}"),handlerPlayer::assignCardToPlayer)
             .andRoute(POST("/api/player/addglobalscore/{id}"),handlerPlayer::addGlobalScore);
     }
 }

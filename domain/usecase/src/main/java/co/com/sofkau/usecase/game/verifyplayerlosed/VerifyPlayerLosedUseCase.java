@@ -2,7 +2,7 @@ package co.com.sofkau.usecase.game.verifyplayerlosed;
 
 import co.com.sofkau.model.game.Game;
 import co.com.sofkau.model.game.gateways.GameRepository;
-import co.com.sofkau.usecase.board.ifnotwinnerchangeround.IfNotWinnerChangeRoundUseCase;
+import co.com.sofkau.model.player.Player;
 import co.com.sofkau.usecase.game.changeRound.ChangeRoundUseCase;
 import co.com.sofkau.usecase.game.findbyid.FindGameByIdUseCase;
 import co.com.sofkau.usecase.game.winnergame.WinnerGameUseCase;
@@ -11,20 +11,32 @@ import reactor.core.publisher.Mono;
 
 import java.util.stream.Collectors;
 
+
+/**
+ * Caso de uso que verifica si hay algun eliminado cada que se destapan las cartas del tablero
+ */
 @RequiredArgsConstructor
 public class VerifyPlayerLosedUseCase {
     private final GameRepository gameRepository;
     private final WinnerGameUseCase winnerGameUseCase;
     private final ChangeRoundUseCase changeRoundUseCase;
-    private final FindGameByIdUseCase findGameByIdUseCase;
+    private  final FindGameByIdUseCase findGameByIdUseCase;
 
-    public Mono<Game> verifyPlayerLosed(String gameId){
-        Game game = findGameByIdUseCase.findGameById(gameId).toFuture().join();
-        game.getPlayers().stream().filter(player -> player.getCards().size()==0)
-                .map(player -> game.getPlayers().remove(player));
+    /**
+     * Metodo que filtra los jugadores que no tienen cartas en su mazo, asi los remueve de la lista.
+     * Si en la lista de jugadores queda 1 solo jugador, este jugador es el ganador y se llama el caso de uso
+     * de declarar ganador a un jugador, y si no, cambia la ronda para seguir jugando
+     *
+     * @param gameId
+     * @param game
+     * @return
+     */
+    public Mono<Game> verifyPlayerLosed(String gameId, Game game){
+       var algo = game.getPlayers().stream().filter(player -> player.getCards().size()==0||player.getCards().isEmpty()).collect(Collectors.toSet());
+       game.getPlayers().removeAll(algo);
         if(game.getPlayers().size()<2){
-
-            winnerGameUseCase.winnerGame(gameId);
+            System.out.println("hola");
+            winnerGameUseCase.winnerGame(gameId,game);
         }else{
             changeRoundUseCase.changeRoundGame(gameId);
         }
