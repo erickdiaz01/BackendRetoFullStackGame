@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -33,7 +34,8 @@ public class GameDocument {
         this.board = board;
         this.idPlayer="";
         this.begined=false;
-        this.creation= LocalDateTime.now() ;
+        ZoneId zid = ZoneId.of("America/Bogota");
+        this.creation= LocalDateTime.now(zid) ;
     }
     public GameDocument(){
         this.board=new Board();
@@ -41,7 +43,8 @@ public class GameDocument {
         this.players=new HashSet<>();
         this.round=1;
         this.begined=false;
-        this.creation= LocalDateTime.now() ;
+        ZoneId zid = ZoneId.of("America/Bogota");
+        this.creation= LocalDateTime.now(zid) ;
     }
 
     public GameDocument(String id, Board board, Set<Player> players) {
@@ -50,7 +53,8 @@ public class GameDocument {
         this.players = players;
         this.idPlayer="";
         this.begined=false;
-        this.creation= LocalDateTime.now() ;
+        ZoneId zid = ZoneId.of("America/Bogota");
+        this.creation= LocalDateTime.now(zid) ;
     }
 
    

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.chrono.ChronoLocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -30,7 +31,8 @@ public class Game {
         this.board = board;
         this.idPlayer="";
         this.begined=false;
-        this.creation= LocalDateTime.now() ;
+        ZoneId zid = ZoneId.of("America/Bogota");
+        this.creation= LocalDateTime.now(zid) ;
     }
    
 
@@ -38,7 +40,8 @@ public class Game {
         this.board = board;
         this.players = players;
         this.begined=false;
-        this.creation= LocalDateTime.now() ;
+        ZoneId zid = ZoneId.of("America/Bogota");
+        this.creation= LocalDateTime.now(zid) ;
     }
 
     public Game(){
@@ -47,6 +50,7 @@ public class Game {
         this.round = 1;
         this.idPlayer = "";
         this.begined=false;
-        this.creation= LocalDateTime.now() ;
+        ZoneId zid = ZoneId.of("America/Bogota");
+        this.creation= LocalDateTime.now(zid) ;
     }
 }
